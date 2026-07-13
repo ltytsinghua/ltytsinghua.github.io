@@ -10,9 +10,9 @@ redirect_from:
   - /about.html
 ---
 
-I am a fifth-year PhD candidate in the Department of Physics at Tsinghua University,
-working on **condensed matter theory**. My research uses tensor-network methods and
-statistical mechanics to study strongly correlated and frustrated quantum systems.
+I am a fifth-year PhD candidate in the Department of Physics at Tsinghua University.
+My research interests include tensor networks, statistical mechanics, vortices in
+unconventional superconductivity, and frustrated magnetism.
 
 ## Research interests
 

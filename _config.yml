@@ -27,8 +27,8 @@ author:
   name             : "Tong-Yu Lin"
   name_zh          : "林桐羽"
   pronouns         : # example: "she/her"
-  bio              : "PhD candidate in condensed matter theory. Tensor networks, statistical mechanics, superconductivity, frustrated magnetism."
-  bio_zh           : "凝聚态理论方向博士生。张量网络、统计力学、超导、阻挫磁性。"
+  bio              : "PhD candidate in condensed matter theory."
+  bio_zh           : "凝聚态理论方向博士生。"
   location         : "Beijing, China"
   location_zh      : "中国·北京"
   employer         : "Tsinghua University"
@@ -85,6 +85,20 @@ author:
   xing             : # Username
   youtube          : # Username
   zhihu            : # Username
+
+  # Custom links — for platforms not built into the theme (WeChat, Bilibili, etc.).
+  # Each entry: url (required), label / label_zh (shown text), icon (Font Awesome class).
+  # Icons: Bilibili = "fab fa-fw fa-bilibili"; WeChat = "fab fa-fw fa-weixin"; generic = "fas fa-fw fa-link".
+  # Fill in the url and uncomment to show. Add as many as you like.
+  custom_links:
+    # - url: "https://space.bilibili.com/YOUR_ID"
+    #   label: "Bilibili"
+    #   label_zh: "B站"
+    #   icon: "fab fa-fw fa-bilibili"
+    # - url: "/images/wechat-qr.jpg"
+    #   label: "WeChat Official Account"
+    #   label_zh: "微信公众号"
+    #   icon: "fab fa-fw fa-weixin"
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:

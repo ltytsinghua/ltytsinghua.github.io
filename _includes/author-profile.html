@@ -170,7 +170,14 @@
       {% endif %}
       {% if author.zhihu %}
       <li><a href="https://www.zhihu.com/people/{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>Zhihu</a></li>
-      {% endif %}      
+      {% endif %}
+
+      <!-- Custom links (e.g. WeChat official account, Bilibili). Defined in _config.yml author.custom_links -->
+      {% if author.custom_links %}
+        {% for link in author.custom_links %}
+          <li><a href="{{ link.url }}"{% if link.url contains '://' %} target="_blank" rel="noopener"{% endif %}><i class="{{ link.icon | default: 'fas fa-fw fa-link' }} icon-pad-right" aria-hidden="true"></i>{% if page.lang == 'zh' and link.label_zh %}{{ link.label_zh }}{% else %}{{ link.label }}{% endif %}</a></li>
+        {% endfor %}
+      {% endif %}
     </ul>
   </div>
 </div>
