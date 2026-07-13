@@ -14,12 +14,11 @@ main:
   - title: "Talks"
     url: /talks/
 
+  - title: "Teaching"
+    url: /teaching/
+
   - title: "CV"
     url: /cv/
-
-  # Add Teaching back once there is content for it:
-  # - title: "Teaching"
-  #   url: /teaching/
 
 # Chinese navigation (used on /zh/ pages)
 main_zh:
@@ -29,8 +28,8 @@ main_zh:
   - title: "报告"
     url: /zh/talks/
 
+  - title: "教学"
+    url: /zh/teaching/
+
   - title: "简历"
     url: /zh/cv/
-
-  # - title: "教学"
-  #   url: /zh/teaching/

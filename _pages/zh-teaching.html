@@ -16,14 +16,18 @@ lang_alt_label: "EN"
 
 {% if campus.size > 0 %}
   <h2>校内助教</h2><hr />
+  <ul>
   {% for post in campus %}
-    {% include archive-single.html %}
+    <li><strong>{{ post.title_zh | default: post.title }}</strong>{% if post.term_zh %} · {{ post.term_zh }}{% endif %}{% if post.instructor_zh %} · {{ post.instructor_zh }}{% endif %}</li>
   {% endfor %}
+  </ul>
 {% endif %}
 
 {% if outreach.size > 0 %}
   <h2>校外教学：初高中物理与物理竞赛</h2><hr />
+  <ul>
   {% for post in outreach %}
-    {% include archive-single.html %}
+    <li><strong>{{ post.title_zh | default: post.title }}</strong>{% if post.type_zh %} · {{ post.type_zh }}{% endif %}{% if post.venue_zh %} · {{ post.venue_zh }}{% endif %}{% if post.term_zh %} · {{ post.term_zh }}{% endif %}</li>
   {% endfor %}
+  </ul>
 {% endif %}
