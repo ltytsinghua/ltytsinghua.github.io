@@ -11,21 +11,26 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "Talks"
+    url: /talks/
+
   - title: "CV"
     url: /cv/
 
-  # Add these back once there is content for them:
-  # - title: "Talks"
-  #   url: /talks/
+  # Add Teaching back once there is content for it:
   # - title: "Teaching"
   #   url: /teaching/
-  # - title: "CV"
-  #   url: /cv-json/
 
 # Chinese navigation (used on /zh/ pages)
 main_zh:
   - title: "发表"
     url: /zh/publications/
 
+  - title: "报告"
+    url: /zh/talks/
+
   - title: "简历"
     url: /zh/cv/
+
+  # - title: "教学"
+  #   url: /zh/teaching/

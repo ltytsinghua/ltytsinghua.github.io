@@ -1,11 +1,12 @@
 ---
 layout: archive
-title: "Teaching"
-permalink: /teaching/
+title: "教学"
+permalink: /zh/teaching/
 author_profile: true
-lang: en
-lang_alt_url: /zh/teaching/
-lang_alt_label: "中文"
+lang: zh
+locale: zh-CN
+lang_alt_url: /teaching/
+lang_alt_label: "EN"
 ---
 
 {% include base_path %}
@@ -14,14 +15,14 @@ lang_alt_label: "中文"
 {% assign outreach = site.teaching | where: "category", "outreach" | sort: "date" | reverse %}
 
 {% if campus.size > 0 %}
-  <h2>Teaching assistant (Tsinghua University)</h2><hr />
+  <h2>校内助教</h2><hr />
   {% for post in campus %}
     {% include archive-single.html %}
   {% endfor %}
 {% endif %}
 
 {% if outreach.size > 0 %}
-  <h2>Physics for middle &amp; high school and competition</h2><hr />
+  <h2>校外教学：初高中物理与物理竞赛</h2><hr />
   {% for post in outreach %}
     {% include archive-single.html %}
   {% endfor %}
