@@ -95,10 +95,10 @@ author:
       label: "Bilibili"
       label_zh: "B站"
       icon: "fab fa-fw fa-bilibili"
-    # - url: "/images/wechat-qr.jpg"
-    #   label: "WeChat Official Account"
-    #   label_zh: "微信公众号"
-    #   icon: "fab fa-fw fa-weixin"
+    - url: "/wechat/"
+      label: "WeChat: 黑羽集"
+      label_zh: "微信公众号"
+      icon: "fab fa-fw fa-weixin"
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
