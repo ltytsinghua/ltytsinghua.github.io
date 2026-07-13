@@ -16,10 +16,9 @@ statistical mechanics to study strongly correlated and frustrated quantum system
 
 ## Research interests
 
-- **Tensor networks** — methods and applications for classical and quantum lattice models
-- **Statistical mechanics** — classical spin/ice models, residual entropy, phase transitions
-- **Superconductivity** — unconventional and frustrated superconducting states
-- **Frustrated magnetism** — kagome and related geometrically frustrated systems
+- **Tensor network** — methods and applications for classical and quantum lattice models
+- **Superconductivity** — unconventional superconducting states and its vortex excitation
+- **Frustrated magnetism** — geometrically frustrated spin systems
 
 ## Contact
 
