@@ -2,7 +2,7 @@
 title: "Tensor-Network Methods for Three-Dimensional Classical Statistical Models and Their Application to the Residual Entropy of Ice"
 collection: talks
 type: "Invited talk"
-permalink: /talks/2026-07-06-tn-3d-residual-entropy-ice
+permalink: /talks/2026-07-06-tn-3d-residual-entropy-ice/
 venue: "Quantum Science Center of Guangdong-Hong Kong-Macao Greater Bay Area"
 date: 2026-07-06
 location: "Shenzhen, China"
