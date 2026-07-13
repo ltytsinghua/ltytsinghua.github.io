@@ -11,14 +11,13 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Talks"
-    url: /talks/    
-
-  - title: "Teaching"
-    url: /teaching/
-
   - title: "CV"
     url: /cv/
 
+  # Add these back once there is content for them:
+  # - title: "Talks"
+  #   url: /talks/
+  # - title: "Teaching"
+  #   url: /teaching/
   # - title: "CV"
   #   url: /cv-json/

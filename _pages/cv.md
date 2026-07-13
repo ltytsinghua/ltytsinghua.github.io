@@ -9,47 +9,29 @@ redirect_from:
 
 {% include base_path %}
 
+Department of Physics, Tsinghua University, Beijing 100084, China<br>
+Email: [lin-ty21@mails.tsinghua.edu.cn](mailto:lin-ty21@mails.tsinghua.edu.cn)
+
 Education
 ======
-* Ph.D. in Physics (Condensed Matter Theory), Tsinghua University, expected <!-- YEAR -->
-* B.S. in Physics, <!-- UNIVERSITY -->, <!-- YEAR -->
-
-Research experience
-======
-<!-- TODO: list research positions, e.g. -->
-<!-- * YEAR–YEAR: Research topic / group -->
-<!--   * Institution -->
-<!--   * Advisor: -->
+* Ph.D. in Condensed Matter Theory, Department of Physics, Tsinghua University, 2021 – 2026 (expected)
+* B.S. in Physics (Elite Program), Nanjing University, 2017 – 2021
+* Northeast Yucai School (Gifted Education Program), 2012 – 2017
 
 Research interests
 ======
-* Tensor networks
-* Statistical mechanics
-* Superconductivity
-* Frustrated magnetism
+* Phenomenological theory of unconventional superconductivity
+* Frustrated spin systems
+* Development of tensor-network algorithms
 
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
 
 Awards and honors
 ======
-<!-- TODO: list awards -->
-
-Service
-======
-<!-- TODO: list service / reviewing / organizing -->
+* First-Class Scholarship, Department of Physics, Tsinghua University, 2025
+* Outstanding Graduate, Nanjing University, 2021
+* First-Class Scholarship, Department of Physics, Nanjing University, 2019
