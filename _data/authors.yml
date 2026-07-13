@@ -1,18 +1,8 @@
 # Authors
 
-Name Name:
-  name        : "Name Name"
-  uri         : "https://name.com"
-  email       : "name@name.com"
-  bio         : "This is the first name."
-  avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
-
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+Tong-Yu Lin:
+  name        : "Tong-Yu Lin"
+  email       : "lin-ty21@mails.tsinghua.edu.cn"
+  bio         : "PhD candidate in condensed matter theory, Tsinghua University."
+  avatar      : "7ec2ec1a18ad737ae1d1579ca218a73d.jpeg"
+  github      : "ltytsinghua"

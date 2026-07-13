@@ -6,5 +6,21 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I am a fifth year phd student in Deparment of Physics, Tsinghua University. I am working in the area of condensed matter theory. My research
-interest includes tensor network, statistical mechanics, superconductivity, frustrated magnetism
+
+I am a fifth-year PhD candidate in the Department of Physics at Tsinghua University,
+working on **condensed matter theory**. My research uses tensor-network methods and
+statistical mechanics to study strongly correlated and frustrated quantum systems.
+
+## Research interests
+
+- **Tensor networks** — methods and applications for classical and quantum lattice models
+- **Statistical mechanics** — classical spin/ice models, residual entropy, phase transitions
+- **Superconductivity** — unconventional and frustrated superconducting states
+- **Frustrated magnetism** — kagome and related geometrically frustrated systems
+
+## Contact
+
+Feel free to reach me at
+[lin-ty21@mails.tsinghua.edu.cn](mailto:lin-ty21@mails.tsinghua.edu.cn).
+You can find my work under [Publications](/publications/) and [Talks](/talks/),
+and a summary of my background on my [CV](/cv/).
