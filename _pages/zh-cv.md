@@ -18,7 +18,7 @@ lang_alt_label: "EN"
 ======
 * 清华大学 物理系 凝聚态理论 博士，2021 – 2026（预计）
 * 南京大学 物理系（拔尖班）理学学士，2017 – 2021
-* 东北育才学校（超常教育实验部），2012 – 2017
+* 东北育才学校（The Gifted Division of Northeast Yucai School），2012 – 2017
 
 研究兴趣
 ======
@@ -28,9 +28,13 @@ lang_alt_label: "EN"
 
 发表论文
 ======
-  <ul>{% for post in site.publications reversed %}
+  <ul>{% assign pubs = site.publications | sort: "date" | reverse %}
+  {% for post in pubs %}{% unless post.hide_meta == true %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  {% endunless %}{% endfor %}
+  {% for post in pubs %}{% if post.hide_meta == true %}
+    {% include archive-single-cv.html %}
+  {% endif %}{% endfor %}</ul>
 
 获奖荣誉
 ======

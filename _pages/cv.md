@@ -29,9 +29,13 @@ Research interests
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
+  <ul>{% assign pubs = site.publications | sort: "date" | reverse %}
+  {% for post in pubs %}{% unless post.hide_meta == true %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  {% endunless %}{% endfor %}
+  {% for post in pubs %}{% if post.hide_meta == true %}
+    {% include archive-single-cv.html %}
+  {% endif %}{% endfor %}</ul>
 
 Awards and honors
 ======
