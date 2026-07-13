@@ -13,6 +13,21 @@ lang_alt_label: "中文"
 {% assign campus = site.teaching | where: "category", "campus" | sort: "date" | reverse %}
 {% assign outreach = site.teaching | where: "category", "outreach" | sort: "date" | reverse %}
 
+{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
+{% if lectures.size > 0 %}
+  <h2>Lecture notes</h2><hr />
+  <p>Lecture notes I prepared for junior/senior high-school math and physics coursework, as well as for math and physics competitions.</p>
+  <ul class="lecture-list">
+  {% for lec in lectures %}
+    <li style="margin-bottom:0.8em;">
+      <strong>{{ lec.title }}</strong>{% if lec.level %} <span class="page__meta">({{ lec.level }})</span>{% endif %}<br />
+      {% if lec.desc %}<span>{{ lec.desc }}</span><br />{% endif %}
+      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>Download PDF</a>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
 {% if campus.size > 0 %}
   <h2>Undergraduate / graduate courses</h2><hr />
   <ul>
@@ -27,21 +42,6 @@ lang_alt_label: "中文"
   <ul>
   {% for post in outreach %}
     <li><strong>{{ post.title }}</strong>{% if post.type %} &middot; {{ post.type }}{% endif %}{% if post.venue %} &middot; {{ post.venue }}{% endif %}{% if post.term_en %} &middot; {{ post.term_en }}{% endif %}</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-
-{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
-{% if lectures.size > 0 %}
-  <h2>Lecture notes</h2><hr />
-  <p>Lecture notes I prepared for junior/senior high-school math and physics coursework, as well as for math and physics competitions.</p>
-  <ul class="lecture-list">
-  {% for lec in lectures %}
-    <li style="margin-bottom:0.8em;">
-      <strong>{{ lec.title }}</strong>{% if lec.level %} <span class="page__meta">({{ lec.level }})</span>{% endif %}<br />
-      {% if lec.desc %}<span>{{ lec.desc }}</span><br />{% endif %}
-      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>Download PDF</a>{% endif %}
-    </li>
   {% endfor %}
   </ul>
 {% endif %}

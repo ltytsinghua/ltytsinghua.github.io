@@ -14,6 +14,21 @@ lang_alt_label: "EN"
 {% assign campus = site.teaching | where: "category", "campus" | sort: "date" | reverse %}
 {% assign outreach = site.teaching | where: "category", "outreach" | sort: "date" | reverse %}
 
+{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
+{% if lectures.size > 0 %}
+  <h2>课程讲义</h2><hr />
+  <p>我为初高中课内数学、物理学习以及数学、物理竞赛整理准备的教学讲义。</p>
+  <ul class="lecture-list">
+  {% for lec in lectures %}
+    <li style="margin-bottom:0.8em;">
+      <strong>{{ lec.title_zh | default: lec.title }}</strong>{% if lec.level_zh %} <span class="page__meta">（{{ lec.level_zh }}）</span>{% endif %}<br />
+      {% if lec.desc_zh %}<span>{{ lec.desc_zh }}</span><br />{% endif %}
+      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>下载 PDF</a>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
 {% if campus.size > 0 %}
   <h2>大学生/研究生课程</h2><hr />
   <ul>
@@ -28,21 +43,6 @@ lang_alt_label: "EN"
   <ul>
   {% for post in outreach %}
     <li><strong>{{ post.title_zh | default: post.title }}</strong>{% if post.type_zh %} · {{ post.type_zh }}{% endif %}{% if post.venue_zh %} · {{ post.venue_zh }}{% endif %}{% if post.term_zh %} · {{ post.term_zh }}{% endif %}</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-
-{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
-{% if lectures.size > 0 %}
-  <h2>课程讲义</h2><hr />
-  <p>我为初高中课内数学、物理学习以及数学、物理竞赛整理准备的教学讲义。</p>
-  <ul class="lecture-list">
-  {% for lec in lectures %}
-    <li style="margin-bottom:0.8em;">
-      <strong>{{ lec.title_zh | default: lec.title }}</strong>{% if lec.level_zh %} <span class="page__meta">（{{ lec.level_zh }}）</span>{% endif %}<br />
-      {% if lec.desc_zh %}<span>{{ lec.desc_zh }}</span><br />{% endif %}
-      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>下载 PDF</a>{% endif %}
-    </li>
   {% endfor %}
   </ul>
 {% endif %}
