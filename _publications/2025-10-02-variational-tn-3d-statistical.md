@@ -7,7 +7,6 @@ excerpt: 'A split corner-transfer renormalization group scheme that contracts tr
 date: 2025-10-02
 venue: 'Physical Review B'
 paperurl: 'https://doi.org/10.1103/7dbj-w7cn'
-citation: 'Xia-Ze Xu*, <b>Tong-Yu Lin</b>*, and Guang-Ming Zhang. (2025). &quot;Efficient optimization of variational tensor-network approach to three-dimensional statistical systems.&quot; <i>Physical Review B</i>, 112, 134403. (*equal contribution)'
 ---
 
 We employ a split corner-transfer renormalization group scheme tailored for contracting

@@ -7,7 +7,6 @@ excerpt: 'A Ginzburg-Landau theory for commensurate pair-density-wave states in 
 date: 2025-02-04
 venue: 'Physical Review B'
 paperurl: 'https://doi.org/10.1103/PhysRevB.111.054508'
-citation: '<b>Tong-Yu Lin</b>, Feng-Feng Song, and Guang-Ming Zhang. (2025). &quot;Theory of the charge-6e condensed phase in kagome-lattice superconductors.&quot; <i>Physical Review B</i>, 111, 054508.'
 ---
 
 We develop a Ginzburg-Landau theory for commensurate pair-density-wave states in

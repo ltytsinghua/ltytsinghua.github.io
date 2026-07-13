@@ -7,7 +7,6 @@ excerpt: 'A unified tensor-network theory that numerically solves frustrated cla
 date: 2023-12-04
 venue: 'Physical Review B'
 paperurl: 'https://doi.org/10.1103/PhysRevB.108.224404'
-citation: 'Feng-Feng Song*, <b>Tong-Yu Lin</b>*, and Guang-Ming Zhang. (2023). &quot;General tensor network theory for frustrated classical spin models in two dimensions.&quot; <i>Physical Review B</i>, 108, 224404. (*equal contribution)'
 ---
 
 We propose a unified tensor-network theory to numerically solve frustrated classical
