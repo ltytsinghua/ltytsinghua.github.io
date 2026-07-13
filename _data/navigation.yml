@@ -21,3 +21,11 @@ main:
   #   url: /teaching/
   # - title: "CV"
   #   url: /cv-json/
+
+# Chinese navigation (used on /zh/ pages)
+main_zh:
+  - title: "发表"
+    url: /zh/publications/
+
+  - title: "简历"
+    url: /zh/cv/

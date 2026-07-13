@@ -3,6 +3,9 @@ layout: archive
 title: "CV"
 permalink: /cv/
 author_profile: true
+lang: en
+lang_alt_url: /zh/cv/
+lang_alt_label: "中文"
 redirect_from:
   - /resume
 ---

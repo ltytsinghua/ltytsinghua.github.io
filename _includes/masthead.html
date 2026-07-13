@@ -5,10 +5,17 @@
       <nav id="site-nav" class="greedy-nav">
         <button><span class="navicon"></span></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+          {% if page.lang == 'zh' %}
+            {% assign nav_links = site.data.navigation.main_zh %}
+            {% assign home_url = '/zh/' %}
+          {% else %}
+            {% assign nav_links = site.data.navigation.main %}
+            {% assign home_url = '/' %}
+          {% endif %}
+          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == home_url or page.url == '/index.html' %}selected{% endif %}">
+            <a href="{{ base_path }}{{ home_url }}">{{ site.title }}</a>
           </li>
-          {% for link in site.data.navigation.main %}
+          {% for link in nav_links %}
             {% if link.url contains 'http' %}
               {% assign domain = '' %}
             {% else %}
@@ -18,6 +25,11 @@
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
+          {% if page.lang_alt_url %}
+          <li class="masthead__menu-item persist tail">
+            <a href="{{ base_path }}{{ page.lang_alt_url }}" title="{{ page.lang_alt_label }}">{{ page.lang_alt_label }}</a>
+          </li>
+          {% endif %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>

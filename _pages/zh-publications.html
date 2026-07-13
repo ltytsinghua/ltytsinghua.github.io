@@ -1,0 +1,39 @@
+---
+layout: archive
+title: "发表"
+permalink: /zh/publications/
+author_profile: true
+lang: zh
+locale: zh-CN
+lang_alt_url: /publications/
+lang_alt_label: "EN"
+---
+
+{% if site.author.googlescholar %}
+  <div class="wordwrap">你也可以在我的 <a href="{{site.author.googlescholar}}">Google Scholar 主页</a> 上找到我的论文。</div>
+{% endif %}
+
+{% include base_path %}
+
+{% if site.publication_category %}
+  {% for category in site.publication_category %}
+    {% assign title_shown = false %}
+    {% for post in site.publications reversed %}
+      {% if post.category != category[0] %}
+        {% continue %}
+      {% endif %}
+      {% unless title_shown %}
+        {% case category[0] %}
+          {% when 'manuscripts' %}{% assign cat_title_zh = '期刊论文' %}
+          {% when 'preprints' %}{% assign cat_title_zh = '预印本' %}
+          {% when 'conferences' %}{% assign cat_title_zh = '会议论文' %}
+          {% when 'books' %}{% assign cat_title_zh = '专著' %}
+          {% else %}{% assign cat_title_zh = category[1].title %}
+        {% endcase %}
+        <h2>{{ cat_title_zh }}</h2><hr />
+        {% assign title_shown = true %}
+      {% endunless %}
+      {% include archive-single.html %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}

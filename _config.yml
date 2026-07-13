@@ -25,10 +25,14 @@ author:
   # Biographic information
   avatar           : "7ec2ec1a18ad737ae1d1579ca218a73d.jpeg"
   name             : "Tong-Yu Lin"
+  name_zh          : "林桐羽"
   pronouns         : # example: "she/her"
   bio              : "PhD candidate in condensed matter theory. Tensor networks, statistical mechanics, superconductivity, frustrated magnetism."
+  bio_zh           : "凝聚态理论方向博士生。张量网络、统计力学、超导、阻挫磁性。"
   location         : "Beijing, China"
+  location_zh      : "中国·北京"
   employer         : "Tsinghua University"
+  employer_zh      : "清华大学"
   uri              : # URL
   email            : "lin-ty21@mails.tsinghua.edu.cn" 
 
