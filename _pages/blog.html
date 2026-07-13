@@ -1,0 +1,19 @@
+---
+layout: archive
+title: "Blog"
+permalink: /blog/
+author_profile: true
+lang: en
+lang_alt_url: /zh/blog/
+lang_alt_label: "中文"
+---
+
+{% include base_path %}
+
+<p>Blog posts and musings — physics, coding, and other thoughts.</p>
+
+{% for post in site.posts %}
+  {% unless post.draft %}
+    {% include archive-single.html %}
+  {% endunless %}
+{% endfor %}

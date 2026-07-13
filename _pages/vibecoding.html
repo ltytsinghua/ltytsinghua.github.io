@@ -1,0 +1,32 @@
+---
+layout: archive
+title: "Vibe Coding"
+permalink: /vibecoding/
+author_profile: true
+lang: en
+lang_alt_url: /zh/vibecoding/
+lang_alt_label: "中文"
+---
+
+{% include base_path %}
+
+<p>Small projects I built for fun, mostly vibe-coded. Code and demos below.</p>
+
+{% assign projects = site.vibecoding | sort: "date" | reverse %}
+<div class="grid__wrapper">
+{% for post in projects %}
+  {% unless post.draft %}
+  <div class="archive__item" style="margin-bottom:2em;">
+    {% if post.header.teaser %}
+      <a href="{{ base_path }}{{ post.url }}"><img src="{{ base_path }}{{ post.header.teaser }}" alt="{{ post.title }}" style="max-width:280px;width:100%;height:auto;border-radius:6px;" /></a>
+    {% endif %}
+    <h3 style="margin:0.4em 0 0.2em;"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+    {% if post.excerpt %}<p style="margin:0.2em 0;">{{ post.excerpt }}</p>{% endif %}
+    <p style="margin:0.2em 0;">
+      {% if post.repo and post.repo != "" %}<a href="{{ post.repo }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>{% endif %}
+      {% if post.demo and post.demo != "" %} &middot; <a href="{{ post.demo }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>{% endif %}
+    </p>
+  </div>
+  {% endunless %}
+{% endfor %}
+</div>

@@ -1,0 +1,33 @@
+---
+layout: archive
+title: "Vibe Coding"
+permalink: /zh/vibecoding/
+author_profile: true
+lang: zh
+locale: zh-CN
+lang_alt_url: /vibecoding/
+lang_alt_label: "EN"
+---
+
+{% include base_path %}
+
+<p>一些兴趣使然、随手 vibe coding 出来的小项目。代码与演示见下。</p>
+
+{% assign projects = site.vibecoding | sort: "date" | reverse %}
+<div class="grid__wrapper">
+{% for post in projects %}
+  {% unless post.draft %}
+  <div class="archive__item" style="margin-bottom:2em;">
+    {% if post.header.teaser %}
+      <a href="{{ base_path }}{{ post.url }}"><img src="{{ base_path }}{{ post.header.teaser }}" alt="{{ post.title_zh | default: post.title }}" style="max-width:280px;width:100%;height:auto;border-radius:6px;" /></a>
+    {% endif %}
+    <h3 style="margin:0.4em 0 0.2em;"><a href="{{ base_path }}{{ post.url }}">{{ post.title_zh | default: post.title }}</a></h3>
+    {% if post.excerpt_zh %}<p style="margin:0.2em 0;">{{ post.excerpt_zh }}</p>{% elsif post.excerpt %}<p style="margin:0.2em 0;">{{ post.excerpt }}</p>{% endif %}
+    <p style="margin:0.2em 0;">
+      {% if post.repo and post.repo != "" %}<a href="{{ post.repo }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> 代码</a>{% endif %}
+      {% if post.demo and post.demo != "" %} &middot; <a href="{{ post.demo }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> 演示</a>{% endif %}
+    </p>
+  </div>
+  {% endunless %}
+{% endfor %}
+</div>

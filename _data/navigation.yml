@@ -20,6 +20,12 @@ main:
   - title: "CV"
     url: /cv/
 
+  - title: "Vibe Coding"
+    url: /vibecoding/
+
+  - title: "Blog"
+    url: /blog/
+
 # Chinese navigation (used on /zh/ pages)
 main_zh:
   - title: "发表"
@@ -33,3 +39,9 @@ main_zh:
 
   - title: "简历"
     url: /zh/cv/
+
+  - title: "Vibe Coding"
+    url: /zh/vibecoding/
+
+  - title: "博客"
+    url: /zh/blog/

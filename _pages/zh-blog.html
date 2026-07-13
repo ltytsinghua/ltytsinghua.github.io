@@ -1,0 +1,20 @@
+---
+layout: archive
+title: "博客"
+permalink: /zh/blog/
+author_profile: true
+lang: zh
+locale: zh-CN
+lang_alt_url: /blog/
+lang_alt_label: "EN"
+---
+
+{% include base_path %}
+
+<p>博客与随笔——物理、编程，以及其它杂谈。</p>
+
+{% for post in site.posts %}
+  {% unless post.draft %}
+    {% include archive-single.html %}
+  {% endunless %}
+{% endfor %}
