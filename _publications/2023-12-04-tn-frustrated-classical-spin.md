@@ -3,13 +3,13 @@ title: "General tensor network theory for frustrated classical spin models in tw
 collection: publications
 category: manuscripts
 permalink: /publication/2023-12-04-tn-frustrated-classical-spin
-excerpt: 'A unified tensor-network theory that numerically solves frustrated classical spin models on various 2D lattices, relieving frustration through effective interactions between emergent local degrees of freedom.'
+excerpt: 'A general tensor-network theory that numerically solves frustrated classical spin models on various 2D lattices, relieving frustration through effective interactions between emergent local degrees of freedom.'
 date: 2023-12-04
 venue: 'Physical Review B'
 paperurl: 'https://doi.org/10.1103/PhysRevB.108.224404'
 ---
 
-We propose a unified tensor-network theory to numerically solve frustrated classical
+We propose a general tensor-network theory to numerically solve frustrated classical
 spin models on various two-dimensional lattices with high efficiency. Encoding the
 emergent degrees of freedom in each local tensor, the frustration is relieved through
 effective interactions between emergent local degrees of freedom, and the partition
