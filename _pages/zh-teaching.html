@@ -31,3 +31,18 @@ lang_alt_label: "EN"
   {% endfor %}
   </ul>
 {% endif %}
+
+{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
+{% if lectures.size > 0 %}
+  <h2>课程讲义（免费下载）</h2><hr />
+  <p>我为初高中物理与物理竞赛整理的教学讲义，欢迎下载取用。</p>
+  <ul class="lecture-list">
+  {% for lec in lectures %}
+    <li style="margin-bottom:0.8em;">
+      <strong>{{ lec.title_zh | default: lec.title }}</strong>{% if lec.level_zh %} <span class="page__meta">（{{ lec.level_zh }}）</span>{% endif %}<br />
+      {% if lec.desc_zh %}<span>{{ lec.desc_zh }}</span><br />{% endif %}
+      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>下载 PDF</a>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}

@@ -1,0 +1,26 @@
+# 校外教学讲义下载列表 / Outreach lecture notes for download
+#
+# 使用方法：
+#   1. 把讲义 PDF 放到  files/lectures/  目录（例如 files/lectures/mechanics-basics.pdf）
+#   2. 在下面照着示例加一条记录（去掉 # 注释符）
+#   3. 提交并推送即可，页面会自动出现该讲义 + 下载按钮
+#
+# 字段说明：
+#   title    : 英文标题（英文页显示）
+#   title_zh : 中文标题（中文页显示）
+#   desc     : 英文简介（可选，一句话）
+#   desc_zh  : 中文简介（可选）
+#   level    : 层次，如 "High school" / "Competition"（英文页）
+#   level_zh : 层次中文，如 "高中" / "物理竞赛"（中文页）
+#   file     : PDF 相对路径，从 /files/lectures/ 开始，例如 /files/lectures/xxx.pdf
+#   date     : 日期或年份（可选，用于排序，如 2023-09-01）
+
+lectures:
+  # - title:    "Mechanics for Physics Competition"
+  #   title_zh: "物理竞赛力学专题"
+  #   desc:     "Lecture notes on Newtonian mechanics for high-school competition."
+  #   desc_zh:  "面向高中物理竞赛的牛顿力学讲义。"
+  #   level:    "Competition"
+  #   level_zh: "物理竞赛"
+  #   file:     "/files/lectures/mechanics-competition.pdf"
+  #   date:     2023-09-01

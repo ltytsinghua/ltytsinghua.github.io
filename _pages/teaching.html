@@ -30,3 +30,18 @@ lang_alt_label: "中文"
   {% endfor %}
   </ul>
 {% endif %}
+
+{% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
+{% if lectures.size > 0 %}
+  <h2>Lecture notes (free download)</h2><hr />
+  <p>Teaching materials I prepared for middle/high-school physics and physics competitions. Feel free to download and use them.</p>
+  <ul class="lecture-list">
+  {% for lec in lectures %}
+    <li style="margin-bottom:0.8em;">
+      <strong>{{ lec.title }}</strong>{% if lec.level %} <span class="page__meta">({{ lec.level }})</span>{% endif %}<br />
+      {% if lec.desc %}<span>{{ lec.desc }}</span><br />{% endif %}
+      {% if lec.file %}<a class="btn btn--primary" href="{{ base_path }}{{ lec.file }}" download>Download PDF</a>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
