@@ -33,8 +33,8 @@ lang_alt_label: "中文"
 
 {% assign lectures = site.data.lectures.lectures | sort: "date" | reverse %}
 {% if lectures.size > 0 %}
-  <h2>Lecture notes (free download)</h2><hr />
-  <p>Teaching materials I prepared for middle/high-school physics and physics competitions. Feel free to download and use them.</p>
+  <h2>Lecture notes</h2><hr />
+  <p>Lecture notes I prepared for junior/senior high-school math and physics coursework, as well as for math and physics competitions.</p>
   <ul class="lecture-list">
   {% for lec in lectures %}
     <li style="margin-bottom:0.8em;">
