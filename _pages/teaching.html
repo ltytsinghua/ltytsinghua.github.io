@@ -23,7 +23,7 @@ lang_alt_label: "中文"
 {% endif %}
 
 {% if outreach.size > 0 %}
-  <h2>Physics for middle &amp; high school and competition</h2><hr />
+  <h2>Physics &amp; math for middle/high school and competition</h2><hr />
   <ul>
   {% for post in outreach %}
     <li><strong>{{ post.title }}</strong>{% if post.type %} &middot; {{ post.type }}{% endif %}{% if post.venue %} &middot; {{ post.venue }}{% endif %}{% if post.term_en %} &middot; {{ post.term_en }}{% endif %}</li>

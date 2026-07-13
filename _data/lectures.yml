@@ -16,6 +16,13 @@
 #   date     : 日期或年份（可选，用于排序，如 2023-09-01）
 
 lectures:
+  - title:    "Equations and Functions (Junior High Math Competition)"
+    title_zh: "初中数学竞赛课：方程与函数"
+    level:    "Junior high math competition"
+    level_zh: "初中数学竞赛"
+    file:     "/files/lectures/junior-math-equations-functions.pdf"
+    date:     2024-01-01
+
   # - title:    "Mechanics for Physics Competition"
   #   title_zh: "物理竞赛力学专题"
   #   desc:     "Lecture notes on Newtonian mechanics for high-school competition."
