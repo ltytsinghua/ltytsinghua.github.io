@@ -91,10 +91,10 @@ author:
   # Icons: Bilibili = "fab fa-fw fa-bilibili"; WeChat = "fab fa-fw fa-weixin"; generic = "fas fa-fw fa-link".
   # Fill in the url and uncomment to show. Add as many as you like.
   custom_links:
-    # - url: "https://space.bilibili.com/YOUR_ID"
-    #   label: "Bilibili"
-    #   label_zh: "B站"
-    #   icon: "fab fa-fw fa-bilibili"
+    - url: "https://space.bilibili.com/277036483"
+      label: "Bilibili"
+      label_zh: "B站"
+      icon: "fab fa-fw fa-bilibili"
     # - url: "/images/wechat-qr.jpg"
     #   label: "WeChat Official Account"
     #   label_zh: "微信公众号"
