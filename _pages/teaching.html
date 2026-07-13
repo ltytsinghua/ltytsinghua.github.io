@@ -14,7 +14,7 @@ lang_alt_label: "中文"
 {% assign outreach = site.teaching | where: "category", "outreach" | sort: "date" | reverse %}
 
 {% if campus.size > 0 %}
-  <h2>Teaching assistant (Tsinghua University)</h2><hr />
+  <h2>Undergraduate / graduate courses</h2><hr />
   <ul>
   {% for post in campus %}
     <li><strong>{{ post.title }}</strong>{% if post.term_en %} &middot; {{ post.term_en }}{% endif %}{% if post.instructor_en %} &middot; {{ post.instructor_en }}{% endif %}</li>

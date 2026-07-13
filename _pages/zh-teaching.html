@@ -15,7 +15,7 @@ lang_alt_label: "EN"
 {% assign outreach = site.teaching | where: "category", "outreach" | sort: "date" | reverse %}
 
 {% if campus.size > 0 %}
-  <h2>校内助教</h2><hr />
+  <h2>大学生/研究生课程</h2><hr />
   <ul>
   {% for post in campus %}
     <li><strong>{{ post.title_zh | default: post.title }}</strong>{% if post.term_zh %} · {{ post.term_zh }}{% endif %}{% if post.instructor_zh %} · {{ post.instructor_zh }}{% endif %}</li>
