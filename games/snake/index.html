@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小林老师版贪吃蛇</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: #1a1a2e;
+    color: #e8e8e8;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  h1 { font-size: 24px; font-weight: 600; letter-spacing: 2px; color: #4ecca3; }
+  .brand {
+    background: #fff;
+    padding: 8px 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand img {
+    height: 46px;
+    width: auto;
+    display: block;
+  }
+  .scoreboard {
+    display: flex;
+    gap: 32px;
+    font-size: 16px;
+  }
+  .scoreboard b { color: #4ecca3; }
+  #questionBar {
+    display: none;                 /* 仅数学模式显示 */
+    min-width: min(440px, 92vw);
+    padding: 14px 22px;
+    background: #0f1b34;
+    border: 2px solid #2a4a7f;
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffd166;
+    text-align: center;
+  }
+  #questionBar.show { display: block; }
+  #questionBar .q-label { color: #6a8; font-size: 15px; font-weight: 400; margin-right: 8px; }
+  .wrap { position: relative; }
+  canvas {
+    background: #16213e;
+    border: 2px solid #0f3460;
+    border-radius: 8px;
+    display: block;
+    width: min(480px, 92vw);
+    height: min(480px, 92vw);
+    touch-action: none;          /* 触摸时不滚动页面 */
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(15, 23, 42, 0.82);
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+  }
+  .overlay.hidden { display: none; }
+  .overlay h2 { font-size: 22px; color: #e94560; }
+  .overlay p { font-size: 14px; color: #b8b8b8; line-height: 1.6; }
+  .difficulty {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .diff-btn {
+    padding: 7px 14px;
+    font-size: 14px;
+    color: #b8b8b8;
+    background: transparent;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .diff-btn:hover { border-color: #4ecca3; color: #e8e8e8; }
+  .diff-btn.active {
+    background: #4ecca3;
+    border-color: #4ecca3;
+    color: #16213e;
+    font-weight: 600;
+  }
+  .btn {
+    margin-top: 8px;
+    padding: 10px 24px;
+    font-size: 15px;
+    color: #16213e;
+    background: #4ecca3;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform .1s, background .2s;
+  }
+  .btn:hover { background: #6fe0bd; }
+  .btn:active { transform: scale(0.96); }
+  .hint { font-size: 12px; color: #888; }
+  .author {
+    font-size: 12px;
+    color: #5a6b8c;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .author b { color: #4ecca3; font-weight: 600; }
+
+  /* 排行榜 */
+  .name-entry {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    align-items: center;
+  }
+  .name-entry input {
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    background: #0f1b34;
+    color: #e8e8e8;
+    width: 130px;
+    text-align: center;
+  }
+  .name-entry input:focus { outline: none; border-color: #4ecca3; }
+  .board {
+    width: 100%;
+    max-width: 280px;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+  .board-row {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 5px;
+  }
+  .board-row:nth-child(odd) { background: rgba(255,255,255,0.04); }
+  .board-row.me { background: rgba(78,204,163,0.22); }
+  .board-rank { width: 28px; color: #8aa; font-weight: 600; }
+  .board-name { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .board-score { color: #4ecca3; font-weight: 600; }
+  .board-empty { color: #888; font-size: 13px; padding: 8px; }
+  .board-count { color: #8aa; font-size: 12px; margin: 2px 0 4px; }
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 28, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 10;
+    padding: 20px;
+  }
+  .modal.hidden { display: none; }
+  .modal h2 { color: #4ecca3; font-size: 22px; }
+</style>
+</head>
+<body>
+  <audio id="bgm" loop preload="auto"></audio>
+  <div class="brand"><img src="logo.jpg" alt="多维优学 DUWELL EDU"></div>
+  <h1>🐍 小林老师版贪吃蛇</h1>
+  <div class="scoreboard">
+    <span>得分 <b id="score">0</b></span>
+    <span>最高 <b id="best">0</b></span>
+    <span>难度 <b id="curDiff">简单</b></span>
+    <span>地图 <b id="mapSize">20×20</b></span>
+  </div>
+  <div id="questionBar"><span class="q-label">求：</span><span id="questionText"></span></div>
+  <div class="wrap">
+    <canvas id="game" width="480" height="480"></canvas>
+    <div class="overlay" id="overlay">
+      <h2 id="overlayTitle">准备好了吗？</h2>
+      <p id="overlayText">用 <b>方向键</b> 或 <b>WASD</b> 控制移动<br>吃 <b style="color:#e94560">红色食物</b> 变长 · 吃 <b style="color:#a855f7">紫色怪物</b> 地图扩大一圈<br>撞墙或撞到自己就结束</p>
+      <div class="difficulty" id="difficulty">
+        <button class="diff-btn active" data-diff="easy">简单</button>
+        <button class="diff-btn" data-diff="hard">困难</button>
+        <button class="diff-btn" data-diff="hell">绝地</button>
+      </div>
+      <div class="difficulty" id="modeSwitch">
+        <button class="diff-btn active" data-mode="classic">🐍 经典</button>
+        <button class="diff-btn" data-mode="math">🧮 数学</button>
+      </div>
+      <div class="name-entry" id="nameEntry" style="display:none;">
+        <input id="nameInput" maxlength="10" placeholder="输入你的名字">
+        <button class="btn" id="saveScore" style="margin-top:0; padding:8px 16px;">保存</button>
+      </div>
+      <div class="board" id="overlayBoard"></div>
+      <button class="btn" id="startBtn">开始游戏</button>
+    </div>
+  </div>
+  <div style="display:flex; gap:16px; align-items:center;">
+    <p class="hint">电脑：方向键/WASD，空格暂停 · 手机：滑动屏幕，双指点击暂停</p>
+    <button class="diff-btn" id="musicBtn" style="padding:5px 12px;">🔊 音乐</button>
+    <button class="diff-btn" id="trackBtn" style="padding:5px 12px;">🎵 切歌</button>
+    <button class="diff-btn" id="boardBtn" style="padding:5px 12px;">🏆 排行榜</button>
+  </div>
+  <p class="author"><b>多维优学</b> 出品 · 小林制作 © 2026</p>
+
+  <!-- 排行榜弹窗 -->
+  <div class="modal hidden" id="boardModal">
+    <h2>🏆 全球排行榜</h2>
+    <div class="difficulty" id="boardTabs">
+      <button class="diff-btn active" data-tab="classic">🐍 经典</button>
+      <button class="diff-btn" data-tab="math">🧮 数学</button>
+    </div>
+    <div class="board-count" id="boardCount"></div>
+    <div class="board" id="modalBoard"></div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn" id="closeBoard">关闭</button>
+      <button class="diff-btn" id="clearBoard" style="padding:10px 16px;">🔄 刷新</button>
+    </div>
+  </div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('score');
+  const bestEl = document.getElementById('best');
+  const overlay = document.getElementById('overlay');
+  const overlayTitle = document.getElementById('overlayTitle');
+  const overlayText = document.getElementById('overlayText');
+  const startBtn = document.getElementById('startBtn');
+
+  const BASE_GRID = 20;                  // 经典模式初始格子数（20 x 20）
+  const MATH_BASE_GRID = 14;             // 数学模式初始格子数（更少格子 → 格子更大更清楚）
+  const MAX_GRID = 40;                   // 地图最多扩到 40 x 40（避免格子太小）
+  let GRID = BASE_GRID;                  // 当前格子数（吃怪物会增大）
+  let CELL = canvas.width / GRID;        // 每格像素（随 GRID 变化）
+
+  // 怪物配置
+  const MONSTER_SPAWN_CHANCE = 0.3;      // 每吃一个食物，出现怪物的概率
+  const MONSTER_LIFE = 55;              // 怪物存活步数
+  const MONSTER_MOVE_EVERY = 4;         // 每隔几步游走一次
+
+  // 各难度：start = 初始每步毫秒（越大越慢），min = 最快上限，step = 每升一级加速量
+  const DIFFICULTIES = {
+    easy: { name: '简单', start: 220, min: 130, step: 5 },
+    hard: { name: '困难', start: 130, min: 75,  step: 6 },
+    hell: { name: '绝地', start: 85,  min: 45,  step: 7 },
+  };
+
+  let snake, dir, nextDir, food, score, best, speed, running, paused, loopId;
+  let monster, steps;   // monster: {x,y,life} 或 null；steps: 走过的步数
+  let answerFoods = [], question = null;   // 数学模式：答案食物数组 + 当前题 {text, answer}
+  let difficulty = localStorage.getItem('snakeDiff') || 'easy';
+  if (!DIFFICULTIES[difficulty]) difficulty = 'easy';
+  let gameMode = localStorage.getItem('snakeMode') || 'classic';
+  if (gameMode !== 'classic' && gameMode !== 'math') gameMode = 'classic';
+
+  const ANSWER_COUNT = 4;                 // 数学模式每题答案食物数（1 对 3 错）
+  const MATH_REWARD = 15;                 // 答对加分
+  const EXPAND_EVERY = 3;                 // 数学模式每答对几题，地图扩大一圈
+  let correctCount = 0;                   // 数学模式累计答对题数
+
+  const diffEl = document.getElementById('difficulty');
+  const curDiffEl = document.getElementById('curDiff');
+  const musicBtn = document.getElementById('musicBtn');
+  const sizeEl = document.getElementById('mapSize');
+  const modeSwitch = document.getElementById('modeSwitch');
+  const questionBar = document.getElementById('questionBar');
+  const questionText = document.getElementById('questionText');
+  const boardBtn = document.getElementById('boardBtn');
+  const boardModal = document.getElementById('boardModal');
+  const modalBoard = document.getElementById('modalBoard');
+  const closeBoard = document.getElementById('closeBoard');
+  const clearBoard = document.getElementById('clearBoard');
+  const nameEntry = document.getElementById('nameEntry');
+  const nameInput = document.getElementById('nameInput');
+  const saveScore = document.getElementById('saveScore');
+  const overlayBoard = document.getElementById('overlayBoard');
+  const boardTabs = document.getElementById('boardTabs');
+  const boardCount = document.getElementById('boardCount');
+  let boardTab = 'classic';               // 排行榜弹窗当前查看的模式
+  let overlayMode = 'classic';            // 结束界面榜单显示的模式（=本局模式）
+
+  /* ---------------- 排行榜（联网 Supabase，离线回退本地缓存） ---------------- */
+  const SUPABASE_URL = 'https://npauhuosirnafhayubfx.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wYXVodW9zaXJuYWZoYXl1YmZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2Njk0NDAsImV4cCI6MjA5OTI0NTQ0MH0.zgbrFCEFSlOx_DCPBzV1h5-0yIcXFkiyaZ1rLDPAD8g';
+  const BOARD_KEY = 'snakeLeaderboard';   // 本地缓存 key（离线回退用）
+  const BOARD_MAX = 20;                   // 榜单显示前 N 名
+
+  // 云端：拉取指定模式的排行榜（按分数降序）+ 该模式总记录数。
+  // 返回 { list, total }；失败抛错由调用方回退
+  async function fetchCloudScores(limit, mode) {
+    const url = `${SUPABASE_URL}/rest/v1/scores?select=name,score,mode&mode=eq.${mode}&order=score.desc&limit=${limit}`;
+    const res = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_KEY,
+        Prefer: 'count=exact',            // 让响应头带上总数
+      },
+    });
+    if (!res.ok) throw new Error('fetch failed: ' + res.status);
+    const list = await res.json();
+    // Content-Range 形如 "0-19/137"，斜杠后是总数
+    let total = list.length;
+    const cr = res.headers.get('content-range');
+    if (cr && cr.includes('/')) {
+      const n = parseInt(cr.split('/')[1], 10);
+      if (!isNaN(n)) total = n;
+    }
+    return { list, total };
+  }
+
+  // 云端：提交一条成绩
+  async function submitCloudScore(name, sc, mode) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({ name, score: sc, mode }),
+    });
+    if (!res.ok) throw new Error('submit failed: ' + res.status);
+  }
+
+  // 本地缓存（离线回退）：按模式分别存
+  function getLocalBoard(mode) {
+    try { return JSON.parse(localStorage.getItem(BOARD_KEY + ':' + mode)) || []; }
+    catch (e) { return []; }
+  }
+  function cacheBoard(mode, list) {
+    localStorage.setItem(BOARD_KEY + ':' + mode, JSON.stringify(list.slice(0, BOARD_MAX)));
+  }
+  // 把一条成绩并入对应模式的本地缓存并排序
+  function addToLocalBoard(name, sc, mode) {
+    const list = getLocalBoard(mode);
+    list.push({ name, score: sc, mode });
+    list.sort((a, b) => b.score - a.score);
+    cacheBoard(mode, list);
+  }
+
+  // 渲染排行榜（异步）：优先云端，失败回退本地缓存。
+  // opts: { container, topN, mode, meName, meScore, countEl }
+  async function renderBoard(opts) {
+    const { container, topN, mode, meName, meScore, countEl } = opts;
+    container.innerHTML = '<div class="board-empty">加载中…</div>';
+    if (countEl) countEl.textContent = '';
+    let list, total, online = true;
+    try {
+      const r = await fetchCloudScores(topN, mode);
+      list = r.list; total = r.total;
+      cacheBoard(mode, list);              // 顺便刷新本地缓存
+    } catch (e) {
+      online = false;
+      list = getLocalBoard(mode).slice(0, topN);   // 回退
+      total = list.length;
+    }
+    if (countEl) {
+      countEl.textContent = online
+        ? `共 ${total} 条成绩 · 仅显示前 ${topN} 名`
+        : '离线：显示本地缓存';
+    }
+    if (!list.length) {
+      container.innerHTML = '<div class="board-empty">该模式还没有记录，快来争夺第一名！</div>';
+      return;
+    }
+    const medals = ['🥇', '🥈', '🥉'];
+    let highlighted = false;
+    const rows = list.map((e, i) => {
+      const rank = medals[i] || (i + 1);
+      // 高亮：名字+分数都对上，且只高亮第一条匹配
+      const isMe = !highlighted && meName != null && e.name === meName && e.score === meScore;
+      if (isMe) highlighted = true;
+      const me = isMe ? ' me' : '';
+      const safeName = String(e.name).replace(/[<>&]/g, '');
+      return `<div class="board-row${me}"><span class="board-rank">${rank}</span>` +
+             `<span class="board-name">${safeName}</span>` +
+             `<span class="board-score">${e.score}</span></div>`;
+    }).join('');
+    const status = online ? '' : '<div class="board-empty" style="color:#e08a5a">⚠ 离线，显示本地缓存</div>';
+    container.innerHTML = rows + status;
+  }
+
+
+  /* ---------------- 音频引擎 ----------------
+     背景音乐：<audio> 标签播放曲目，支持多首切换（TRACKS 列表）
+     音效：Web Audio 实时合成（短促的吃食物/结束音）         */
+  const Sound = (function () {
+    const bgm = document.getElementById('bgm');
+    bgm.volume = 0.5;
+    let enabled = localStorage.getItem('snakeMusic') !== 'off';
+    let ctx = null, sfxGain = null;
+
+    // 曲目列表：往这里加条目即可扩展（file 放到游戏文件夹）
+    const TRACKS = [
+      { name: '哈基米', file: 'hajimi.mp4' },
+      { name: '悬疑哈基米', file: 'hajimi2.mp4' },
+      { name: '芯片原曲', file: 'music.wav' },
+    ];
+    // 用 v2 key：曲目顺序调整后，旧的存储索引作废，新玩家默认第 0 首（哈基米）
+    let trackIdx = parseInt(localStorage.getItem('snakeTrack_v2') || '0', 10);
+    if (isNaN(trackIdx) || trackIdx < 0 || trackIdx >= TRACKS.length) trackIdx = 0;
+
+    function loadTrack(i) {
+      trackIdx = (i + TRACKS.length) % TRACKS.length;
+      localStorage.setItem('snakeTrack_v2', String(trackIdx));
+      const wasPlaying = !bgm.paused;
+      bgm.src = TRACKS[trackIdx].file;
+      bgm.load();
+      if (wasPlaying && enabled) playBgm();
+    }
+    bgm.src = TRACKS[trackIdx].file;      // 初始曲目
+
+    function ensureCtx() {
+      if (!ctx) {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        sfxGain = ctx.createGain(); sfxGain.gain.value = 0.35; sfxGain.connect(ctx.destination);
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+    }
+
+    function blip(freq, dur, type, vol) {
+      try {
+        ensureCtx();
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        const t = ctx.currentTime;
+        g.gain.setValueAtTime(vol, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+        osc.connect(g); g.connect(sfxGain);
+        osc.start(t); osc.stop(t + dur);
+      } catch (e) {}
+    }
+
+    function playBgm() {
+      const p = bgm.play();
+      if (p && p.catch) p.catch(() => {});   // 自动播放被拦时静默失败
+    }
+
+    return {
+      isEnabled: () => enabled,
+      trackCount: () => TRACKS.length,
+      trackName: () => TRACKS[trackIdx].name,
+      // 切到下一首，返回新曲名；并试播一小段作反馈
+      nextTrack() {
+        loadTrack(trackIdx + 1);
+        if (enabled) { try { bgm.currentTime = 0; } catch (e) {} playBgm(); }
+        return TRACKS[trackIdx].name;
+      },
+      // 在用户手势中调用一次，预热音频
+      unlock() { try { ensureCtx(); } catch (e) {} },
+      // 切换音乐时的即时反馈：从头试播一小段（~1秒）再停
+      beep() { if (!enabled) return; try { bgm.currentTime = 0; } catch (e) {} playBgm(); setTimeout(() => bgm.pause(), 1000); },
+      start() {
+        if (!enabled) return;
+        playBgm();
+      },
+      stop() {
+        bgm.pause();
+      },
+      toggle() {
+        enabled = !enabled;
+        localStorage.setItem('snakeMusic', enabled ? 'on' : 'off');
+        if (!enabled) this.stop();
+        return enabled;
+      },
+      eat() { if (!enabled) return; blip(880, 0.08, 'square', 0.6); blip(1320, 0.08, 'square', 0.4); },
+      over() {
+        if (!enabled) return;
+        [440, 349, 262].forEach((f, i) =>
+          setTimeout(() => blip(f, 0.22, 'sawtooth', 0.5), i * 130));
+      },
+    };
+  })();
+
+  best = Number(localStorage.getItem('snakeBest') || 0);
+  bestEl.textContent = best;
+  applyDifficultyUI();
+  applyModeUI();
+
+  function reset() {
+    GRID = (gameMode === 'math') ? MATH_BASE_GRID : BASE_GRID;   // 数学模式格子更大
+    CELL = canvas.width / GRID;
+    const cx = Math.floor(GRID / 2);     // 蛇身从地图中间起步
+    const cy = Math.floor(GRID / 2);
+    snake = [{ x: cx, y: cy }, { x: cx - 1, y: cy }, { x: cx - 2, y: cy }];
+    dir = { x: 1, y: 0 };
+    nextDir = { x: 1, y: 0 };
+    score = 0;
+    steps = 0;
+    correctCount = 0;
+    monster = null;
+    answerFoods = [];
+    question = null;
+    speed = DIFFICULTIES[difficulty].start;
+    paused = false;
+    scoreEl.textContent = score;
+    updateSizeLabel();
+    if (gameMode === 'math') {
+      food = null;                       // 数学模式不用单食物
+      newQuestion();
+    } else {
+      placeFood();
+    }
+  }
+
+  // 返回一个不被蛇、食物、怪物、答案食物占用的随机空格子（找不到返回 null）
+  function randEmptyCell() {
+    const occupied = new Set(snake.map(s => s.x + ',' + s.y));
+    if (food) occupied.add(food.x + ',' + food.y);
+    if (monster) occupied.add(monster.x + ',' + monster.y);
+    answerFoods.forEach(a => occupied.add(a.x + ',' + a.y));
+    const free = [];
+    for (let x = 0; x < GRID; x++)
+      for (let y = 0; y < GRID; y++)
+        if (!occupied.has(x + ',' + y)) free.push({ x, y });
+    if (!free.length) return null;
+    return free[Math.floor(Math.random() * free.length)];
+  }
+
+  function placeFood() {
+    const c = randEmptyCell();
+    if (c) food = c;
+  }
+
+  // 吃掉怪物：地图向四周扩大一圈
+  function expandMap() {
+    if (GRID >= MAX_GRID) return;        // 已达上限
+    GRID += 2;                           // 四周各加一圈
+    CELL = canvas.width / GRID;
+    // 原有内容整体平移 +1，使新格子环绕在外、旧内容居中
+    snake.forEach(s => { s.x += 1; s.y += 1; });
+    if (food) { food.x += 1; food.y += 1; }
+    updateSizeLabel();
+    flashBorder();
+  }
+
+  function updateSizeLabel() {
+    if (sizeEl) sizeEl.textContent = GRID + '×' + GRID;
+  }
+
+  // 地图扩大时画布边框闪一下作为反馈
+  function flashBorder() {
+    canvas.style.borderColor = '#c084fc';
+    setTimeout(() => { canvas.style.borderColor = ''; }, 350);
+  }
+
+  function startGame() {
+    reset();
+    overlay.classList.add('hidden');
+    running = true;
+    Sound.start();
+    scheduleTick();
+  }
+
+  function scheduleTick() {
+    clearTimeout(loopId);
+    loopId = setTimeout(tick, speed);
+  }
+
+  function tick() {
+    if (!running) return;
+    if (!paused) step();
+    scheduleTick();
+  }
+
+  function step() {
+    steps++;
+    dir = nextDir;
+    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+    // 撞墙
+    if (head.x < 0 || head.x >= GRID || head.y < 0 || head.y >= GRID) {
+      return gameOver();
+    }
+    // 撞到自己
+    if (snake.some(s => s.x === head.x && s.y === head.y)) {
+      return gameOver();
+    }
+
+    snake.unshift(head);
+
+    if (gameMode === 'math') {
+      // 数学模式：命中某个答案食物
+      const hit = answerFoods.find(a => a.x === head.x && a.y === head.y);
+      if (hit) {
+        if (hit.correct) {
+          score += MATH_REWARD;
+          correctCount++;
+          scoreEl.textContent = score;
+          Sound.eat();
+          const d = DIFFICULTIES[difficulty];
+          speed = Math.max(d.min, d.start - Math.floor(score / 50) * d.step);
+          // 每答对 EXPAND_EVERY 题，地图扩大一圈（先扩再出新题，答案食物落在新地图上）
+          if (correctCount % EXPAND_EVERY === 0) {
+            answerFoods = [];              // 清空旧答案，避免 expandMap 平移它们
+            expandMap();
+          }
+          newQuestion();                 // 答对换新题，蛇变长（不 pop）
+        } else {
+          Sound.over();
+          return gameOver();             // 答错就死
+        }
+      } else {
+        snake.pop();
+      }
+      draw();
+      return;
+    }
+
+    // ---- 经典模式 ----
+    // 吃到怪物：地图扩大一圈 + 加分（怪物可能与蛇头同格）
+    if (monster && head.x === monster.x && head.y === monster.y) {
+      score += 30;
+      scoreEl.textContent = score;
+      Sound.eat();
+      monster = null;
+      expandMap();
+    }
+
+    if (head.x === food.x && head.y === food.y) {
+      score += 10;
+      scoreEl.textContent = score;
+      Sound.eat();
+      const d = DIFFICULTIES[difficulty];
+      speed = Math.max(d.min, d.start - Math.floor(score / 50) * d.step);
+      placeFood();
+      maybeSpawnMonster();
+    } else {
+      snake.pop();
+    }
+
+    updateMonster();
+    draw();
+  }
+
+  // 吃食物后按概率生成怪物（地图未到上限、且当前没有怪物时）
+  function maybeSpawnMonster() {
+    if (monster || GRID >= MAX_GRID) return;
+    if (Math.random() > MONSTER_SPAWN_CHANCE) return;
+    const c = randEmptyCell();
+    if (c) monster = { x: c.x, y: c.y, life: MONSTER_LIFE };
+  }
+
+  // 怪物的游走与寿命衰减
+  function updateMonster() {
+    if (!monster) return;
+    monster.life--;
+    if (monster.life <= 0) { monster = null; return; }
+    if (steps % MONSTER_MOVE_EVERY === 0) {
+      const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+      const options = dirs
+        .map(d => ({ x: monster.x + d.x, y: monster.y + d.y }))
+        .filter(p => p.x >= 0 && p.x < GRID && p.y >= 0 && p.y < GRID)
+        .filter(p => !snake.some(s => s.x === p.x && s.y === p.y))
+        .filter(p => !(food && p.x === food.x && p.y === food.y));
+      if (options.length) {
+        const next = options[Math.floor(Math.random() * options.length)];
+        monster.x = next.x; monster.y = next.y;
+      }
+    }
+  }
+
+  function draw() {
+    ctx.fillStyle = '#16213e';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (gameMode === 'math') {
+      // 数字答案食物（统一外观，不暗示对错）
+      answerFoods.forEach(a => drawAnswerFood(a.x, a.y, a.label));
+    } else {
+      // 食物
+      if (food) drawCell(food.x, food.y, '#e94560');
+      // 怪物（寿命将尽时闪烁）
+      if (monster && !(monster.life <= 12 && monster.life % 2 === 0)) {
+        drawMonster(monster.x, monster.y);
+      }
+    }
+
+    // 蛇
+    snake.forEach((s, i) => {
+      drawCell(s.x, s.y, i === 0 ? '#4ecca3' : '#3aa888');
+    });
+  }
+
+  function drawAnswerFood(x, y, label) {
+    const px = x * CELL, py = y * CELL;
+    // 底色方块（橙黄系，与题面栏呼应）
+    ctx.fillStyle = '#e8a33d';
+    ctx.fillRect(px + 1, py + 1, CELL - 2, CELL - 2);
+    // 文本：先按字数估一个字号，再实测宽度确保不溢出格子
+    const txt = String(label);
+    let fs = CELL * 0.62;
+    if (txt.length >= 4) fs = CELL * 0.34;
+    else if (txt.length === 3) fs = CELL * 0.42;
+    else if (txt.length === 2) fs = CELL * 0.52;
+    ctx.fillStyle = '#1a1a2e';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const maxW = CELL - 3;
+    do {
+      ctx.font = `700 ${fs}px -apple-system, "PingFang SC", sans-serif`;
+      if (ctx.measureText(txt).width <= maxW || fs <= 5) break;
+      fs -= 1;
+    } while (true);
+    ctx.fillText(txt, px + CELL / 2, py + CELL / 2 + 0.5);
+  }
+
+  function drawMonster(x, y) {
+    const px = x * CELL, py = y * CELL;
+    // 身体
+    ctx.fillStyle = '#a855f7';
+    ctx.fillRect(px + 1, py + 1, CELL - 2, CELL - 2);
+    // 眼睛
+    const r = Math.max(1, CELL * 0.12);
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(px + CELL * 0.35, py + CELL * 0.4, r, 0, Math.PI * 2);
+    ctx.arc(px + CELL * 0.65, py + CELL * 0.4, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#1a1a2e';
+    ctx.beginPath();
+    ctx.arc(px + CELL * 0.35, py + CELL * 0.42, r * 0.5, 0, Math.PI * 2);
+    ctx.arc(px + CELL * 0.65, py + CELL * 0.42, r * 0.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawCell(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2);
+  }
+
+  function gameOver() {
+    running = false;
+    clearTimeout(loopId);
+    Sound.stop();
+    Sound.over();
+    if (score > best) {
+      best = score;
+      localStorage.setItem('snakeBest', best);
+      bestEl.textContent = best;
+    }
+    overlayTitle.textContent = '游戏结束';
+    overlayText.innerHTML = `本局得分 <b>${score}</b><br>${score >= best && score > 0 ? '🎉 新纪录！' : '再接再厉～'}`;
+    startBtn.textContent = '再来一局';
+
+    // 排行榜：得分 > 0 才允许上榜
+    if (score > 0) {
+      nameInput.value = localStorage.getItem('snakeLastName') || '';
+      nameEntry.style.display = 'flex';
+      saveScore.disabled = false;
+      saveScore.textContent = '保存';
+    } else {
+      nameEntry.style.display = 'none';
+    }
+    overlayMode = gameMode;               // 记住本局模式，结束界面榜单按此模式显示
+    renderBoard({ container: overlayBoard, topN: 5, mode: overlayMode });
+    overlay.classList.remove('hidden');
+  }
+
+  async function doSaveScore() {
+    const name = (nameInput.value.trim() || '无名英雄').slice(0, 10);
+    localStorage.setItem('snakeLastName', name);
+    const savedScore = score;
+    nameEntry.style.display = 'none';
+    saveScore.disabled = true;
+    addToLocalBoard(name, savedScore, overlayMode);   // 先写本地缓存，保证离线也留痕
+    try {
+      await submitCloudScore(name, savedScore, overlayMode);   // 上传云端
+    } catch (e) {
+      overlayBoard.insertAdjacentHTML('afterbegin',
+        '<div class="board-empty" style="color:#e08a5a">⚠ 上传失败，已存到本地</div>');
+    }
+    // 刷新并高亮我的成绩
+    renderBoard({ container: overlayBoard, topN: 5, mode: overlayMode, meName: name, meScore: savedScore });
+  }
+
+  function togglePause() {
+    if (!running) return;
+    paused = !paused;
+    if (paused) {
+      Sound.stop();
+      overlayTitle.textContent = '已暂停';
+      overlayText.innerHTML = '按空格键继续';
+      startBtn.textContent = '继续';
+      overlay.classList.remove('hidden');
+    } else {
+      Sound.start();
+      overlay.classList.add('hidden');
+    }
+  }
+
+  function applyDifficultyUI() {
+    curDiffEl.textContent = DIFFICULTIES[difficulty].name;
+    diffEl.querySelectorAll('.diff-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.diff === difficulty);
+    });
+  }
+
+  diffEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.diff-btn');
+    if (!btn || running) return;            // 游戏进行中不允许切换
+    difficulty = btn.dataset.diff;
+    localStorage.setItem('snakeDiff', difficulty);
+    applyDifficultyUI();
+  });
+
+  /* ---------------- 模式切换（经典 / 数学） ---------------- */
+  function applyModeUI() {
+    modeSwitch.querySelectorAll('.diff-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.mode === gameMode);
+    });
+    questionBar.classList.toggle('show', gameMode === 'math');
+    // 数学模式时更新开始界面提示
+    if (overlayTitle.textContent === '准备好了吗？' || startBtn.textContent === '开始游戏') {
+      if (gameMode === 'math') {
+        overlayText.innerHTML = '用 <b>方向键</b> 或 <b>WASD</b> 控制移动<br>看顶部题目，去吃 <b style="color:#ffd166">正确答案</b> 的食物得分<br><b style="color:#e94560">吃错答案直接结束！</b>';
+      } else {
+        overlayText.innerHTML = '用 <b>方向键</b> 或 <b>WASD</b> 控制移动<br>吃 <b style="color:#e94560">红色食物</b> 变长 · 吃 <b style="color:#a855f7">紫色怪物</b> 地图扩大一圈<br>撞墙或撞到自己就结束';
+      }
+    }
+  }
+
+  modeSwitch.addEventListener('click', (e) => {
+    const btn = e.target.closest('.diff-btn');
+    if (!btn || running) return;            // 游戏进行中不允许切换
+    gameMode = btn.dataset.mode;
+    localStorage.setItem('snakeMode', gameMode);
+    applyModeUI();
+  });
+
+  /* ---------------- 数学题库（高中：三角函数 / 向量） ----------------
+     每道题返回 { text, value, label, pool? }：
+       value  = 数值（用于比较对错、去重）
+       label  = 显示文本（可含分数/根号，如 "√3"、"1/2"、"√3/2"）
+       pool   = 可选，该题的一组"漂亮"候选答案 [{value,label}]，用于生成同类干扰项
+     没有 pool 的题回退到数值型干扰项自动生成。                         */
+  const round1 = n => Math.round(n * 10) / 10;
+  const round2 = n => Math.round(n * 100) / 100;
+  const D2R = Math.PI / 180;
+  const EPS = 0.02;                       // 数值比较容差（应对无理数小数）
+
+  // 常用无理数值的"漂亮"标签库，供三角题做同类干扰项
+  const NICE = [
+    { value: 0, label: '0' },
+    { value: 0.5, label: '1/2' },
+    { value: round2(Math.SQRT2 / 2), label: '√2/2' },
+    { value: round2(Math.sqrt(3) / 2), label: '√3/2' },
+    { value: 1, label: '1' },
+    { value: round2(Math.sqrt(3) / 3), label: '√3/3' },
+    { value: round2(Math.sqrt(3)), label: '√3' },
+    { value: round2(Math.SQRT2), label: '√2' },
+    { value: 1.5, label: '3/2' },
+    { value: 2, label: '2' },
+  ];
+
+  function genMathQuestion() {
+    const r = Math.random();
+    if (r < 0.4) return genTrig();
+    return genVector();
+  }
+
+  // 三角函数：一半是"整齐结果"，一半是"根号/分数结果"（非整数）
+  function genTrig() {
+    const intTemplates = [
+      () => ({ text: 'sin30° + cos60°', value: 1, label: '1' }),
+      () => ({ text: '2·sin45°·cos45°', value: 1, label: '1' }),
+      () => ({ text: 'sin90° − cos0°', value: 0, label: '0' }),
+      () => ({ text: '2·cos60°', value: 1, label: '1' }),
+      () => ({ text: '4·sin30°', value: 2, label: '2' }),
+      () => ({ text: '6·cos60°', value: 3, label: '3' }),
+      () => ({ text: '10·sin30°', value: 5, label: '5' }),
+    ];
+    // 非整数结果（根号 / 分数），用 NICE 做干扰项
+    const irrTemplates = [
+      () => ({ text: 'sin60°', value: round2(Math.sqrt(3)/2), label: '√3/2', pool: NICE }),
+      () => ({ text: 'cos30°', value: round2(Math.sqrt(3)/2), label: '√3/2', pool: NICE }),
+      () => ({ text: 'sin45°', value: round2(Math.SQRT2/2), label: '√2/2', pool: NICE }),
+      () => ({ text: 'cos60°', value: 0.5, label: '1/2', pool: NICE }),
+      () => ({ text: 'tan30°', value: round2(Math.sqrt(3)/3), label: '√3/3', pool: NICE }),
+      () => ({ text: 'tan60°', value: round2(Math.sqrt(3)), label: '√3', pool: NICE }),
+      () => ({ text: '2·sin60°', value: round2(Math.sqrt(3)), label: '√3', pool: NICE }),
+      () => ({ text: 'sin30° + cos60° − cos30°', value: round2(1 - Math.sqrt(3)/2), label: '1−√3/2', pool: NICE }),
+    ];
+    const useIrr = Math.random() < 0.5;
+    const list = useIrr ? irrTemplates : intTemplates;
+    return list[Math.floor(Math.random() * list.length)]();
+  }
+
+  // 角度值标签库（供夹角题做同类干扰项）
+  const ANGLES = [
+    { value: 0, label: '0°' }, { value: 30, label: '30°' }, { value: 45, label: '45°' },
+    { value: 60, label: '60°' }, { value: 90, label: '90°' }, { value: 120, label: '120°' },
+    { value: 135, label: '135°' }, { value: 150, label: '150°' }, { value: 180, label: '180°' },
+  ];
+
+  // 向量运算：点积 / 二维叉积 / 三维叉积分量 / 模长 / 数乘分量 / 夹角 / 投影
+  function genVector() {
+    const pyth = [[3,4],[6,8],[8,6],[4,3],[5,12],[12,5]];
+    const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+    const type = Math.floor(Math.random() * 7);
+    if (type === 0) {
+      // 点积 a·b
+      const a = [rnd(1,5), rnd(1,5)], b = [rnd(1,5), rnd(1,5)];
+      const v = a[0]*b[0] + a[1]*b[1];
+      return { text: `(${a[0]},${a[1]})·(${b[0]},${b[1]})`, value: v, label: String(v) };
+    } else if (type === 1) {
+      // 二维叉积（结果为标量）a×b = x₁y₂ − x₂y₁
+      const a = [rnd(1,5), rnd(1,5)], b = [rnd(1,5), rnd(1,5)];
+      const v = a[0]*b[1] - a[1]*b[0];
+      return { text: `(${a[0]},${a[1]})×(${b[0]},${b[1]})`, value: v, label: String(v) };
+    } else if (type === 2) {
+      // 三维叉积的某一分量（结果仍是单个整数）
+      const a = [rnd(1,4), rnd(1,4), rnd(1,4)], b = [rnd(1,4), rnd(1,4), rnd(1,4)];
+      const comps = [
+        { name: 'x', v: a[1]*b[2] - a[2]*b[1] },
+        { name: 'y', v: a[2]*b[0] - a[0]*b[2] },
+        { name: 'z', v: a[0]*b[1] - a[1]*b[0] },
+      ];
+      const c = comps[Math.floor(Math.random() * 3)];
+      return { text: `(${a.join(',')})×(${b.join(',')}) 的 ${c.name} 分量`, value: c.v, label: String(c.v) };
+    } else if (type === 3) {
+      // 模长 |a|
+      const p = pyth[Math.floor(Math.random() * pyth.length)];
+      const v = Math.round(Math.hypot(p[0], p[1]));
+      return { text: `|(${p[0]},${p[1]})|`, value: v, label: String(v) };
+    } else if (type === 4) {
+      // 数乘后某分量
+      const k = rnd(2,4), x = rnd(1,5), y = rnd(1,5);
+      const v = k * x;
+      return { text: `${k}·(${x},${y}) 的 x 分量`, value: v, label: String(v) };
+    } else if (type === 5) {
+      // 夹角（选取能得到特殊角的向量对），答案为度数
+      const cases = [
+        { a: [1,0], b: [1,0], ang: 0 },
+        { a: [1,0], b: [1,1], ang: 45 },
+        { a: [1,0], b: [0,1], ang: 90 },
+        { a: [1,1], b: [-1,1], ang: 90 },
+        { a: [1,0], b: [-1,0], ang: 180 },
+        { a: [1,0], b: [-1,1], ang: 135 },
+        { a: [1,1], b: [0,1], ang: 45 },
+        { a: [0,1], b: [0,-1], ang: 180 },
+      ];
+      const c = cases[Math.floor(Math.random() * cases.length)];
+      return {
+        text: `(${c.a[0]},${c.a[1]}) 与 (${c.b[0]},${c.b[1]}) 的夹角`,
+        value: c.ang, label: c.ang + '°', pool: ANGLES,
+      };
+    } else {
+      // 标量投影：a 在 b 方向的投影 = (a·b)/|b|，取 |b| 为整数且结果为整数的组合
+      const bases = [[3,4],[4,3],[6,8]];            // |b| = 5 或 10
+      const b = bases[Math.floor(Math.random() * bases.length)];
+      const bn = Math.round(Math.hypot(b[0], b[1]));
+      let a, proj;
+      do {                                          // 找一个使投影为整数的 a
+        a = [rnd(1,6), rnd(1,6)];
+        const dot = a[0]*b[0] + a[1]*b[1];
+        proj = dot / bn;
+      } while (!Number.isInteger(proj));
+      return { text: `(${a[0]},${a[1]}) 在 (${b[0]},${b[1]}) 方向的投影`, value: proj, label: String(proj) };
+    }
+  }
+
+  // 生成答案选项 [{value,label}]：含 1 个正确 + (ANSWER_COUNT-1) 个干扰
+  function makeOptions(q) {
+    const correct = { value: q.value, label: q.label };
+    const chosen = [correct];
+    const usedVals = new Set([round2(q.value)]);
+
+    const tryAdd = (opt) => {
+      const key = round2(opt.value);
+      if (usedVals.has(key)) return false;           // 数值不能与已选重复
+      usedVals.add(key);
+      chosen.push(opt);
+      return true;
+    };
+
+    if (q.pool) {
+      // 有"漂亮候选池"：优先从池里挑与正确答案不同的
+      const shuffled = q.pool.slice().sort(() => Math.random() - 0.5);
+      for (const opt of shuffled) {
+        if (chosen.length >= ANSWER_COUNT) break;
+        if (Math.abs(opt.value - q.value) < EPS) continue;   // 跳过等于正确答案的
+        tryAdd({ value: opt.value, label: opt.label });
+      }
+    }
+    // 数值型补齐（整数 → ±整数；小数 → ±0.5 步进）
+    const isInt = Number.isInteger(q.value);
+    let guard = 0;
+    while (chosen.length < ANSWER_COUNT && guard++ < 60) {
+      const delta = (Math.floor(Math.random() * 4) + 1) * (Math.random() < 0.5 ? -1 : 1);
+      let cand = isInt ? q.value + delta : round1(q.value + delta * 0.5);
+      if (cand < 0) cand = Math.abs(cand) + (isInt ? 1 : 0.5);
+      tryAdd({ value: cand, label: String(round2(cand)) });
+    }
+    // 最终保底
+    let extra = 1;
+    while (chosen.length < ANSWER_COUNT) {
+      const cand = q.value + 100 + extra++;
+      tryAdd({ value: cand, label: String(cand) });
+    }
+    // 洗牌
+    for (let i = chosen.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [chosen[i], chosen[j]] = [chosen[j], chosen[i]];
+    }
+    return chosen;
+  }
+
+  // 出新题：生成题目 + 在地图上放置答案食物，并更新题面栏
+  function newQuestion() {
+    question = genMathQuestion();
+    questionText.textContent = question.text + ' = ?';
+    placeAnswerFoods(makeOptions(question));
+  }
+
+
+  // 放置答案食物（互不重叠、不压蛇身）；options 为 [{value,label}]
+  function placeAnswerFoods(options) {
+    answerFoods = [];
+    for (const opt of options) {
+      const c = randEmptyCell();          // randEmptyCell 会把已放的 answerFoods 计入占用
+      if (!c) break;
+      const correct = Math.abs(opt.value - question.value) < EPS;
+      answerFoods.push({ x: c.x, y: c.y, value: opt.value, label: opt.label, correct });
+    }
+  }
+
+  function setDir(x, y) {
+    // 禁止 180 度掉头
+    if (x === -dir.x && y === -dir.y) return;
+    nextDir = { x, y };
+  }
+
+  document.addEventListener('keydown', (e) => {
+    // 在输入框里打字时（如填写排行榜名字）不要控制游戏
+    if (e.target && e.target.tagName === 'INPUT') {
+      if (e.key === 'Enter') { e.preventDefault(); doSaveScore(); }
+      return;
+    }
+    switch (e.key) {
+      case 'ArrowUp': case 'w': case 'W':    setDir(0, -1); break;
+      case 'ArrowDown': case 's': case 'S':  setDir(0, 1);  break;
+      case 'ArrowLeft': case 'a': case 'A':  setDir(-1, 0); break;
+      case 'ArrowRight': case 'd': case 'D': setDir(1, 0);  break;
+      case ' ':
+        e.preventDefault();
+        if (running) togglePause();
+        else startGame();
+        break;
+      case 'Enter':
+        if (!running) startGame();
+        break;
+      default: return;
+    }
+    if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
+  });
+
+  startBtn.addEventListener('click', () => {
+    if (paused && running) togglePause();
+    else startGame();
+  });
+
+  /* ---------------- 手机触屏：滑动控制方向 ---------------- */
+  let touchStartX = 0, touchStartY = 0, touchActive = false;
+  const SWIPE_MIN = 20;   // 最小滑动距离（像素），低于此视为点击
+
+  canvas.addEventListener('touchstart', (e) => {
+    // 双指点击 = 暂停/继续
+    if (e.touches.length >= 2) {
+      e.preventDefault();
+      if (running) togglePause();
+      return;
+    }
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchActive = true;
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();   // 阻止滑动时页面跟着动
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', (e) => {
+    if (!touchActive) return;
+    touchActive = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    const absX = Math.abs(dx), absY = Math.abs(dy);
+
+    if (absX < SWIPE_MIN && absY < SWIPE_MIN) {
+      // 几乎没移动：当作点击。游戏未开始/已结束则开始
+      if (!running) startGame();
+      return;
+    }
+    // 取主方向滑动
+    if (absX > absY) {
+      setDir(dx > 0 ? 1 : -1, 0);
+    } else {
+      setDir(0, dy > 0 ? 1 : -1);
+    }
+  }, { passive: false });
+
+  // 音乐开关按钮
+  function updateMusicBtn() {
+    const on = Sound.isEnabled();
+    musicBtn.textContent = on ? '🔊 音乐' : '🔇 静音';
+    musicBtn.classList.toggle('active', on);
+  }
+  musicBtn.addEventListener('click', () => {
+    const on = Sound.toggle();
+    if (on) {
+      if (running && !paused) Sound.start();   // 游戏中开启则立刻续上背景音乐
+      else Sound.beep();                       // 菜单中开启则播一声反馈，证明音频正常
+    }
+    updateMusicBtn();
+  });
+  updateMusicBtn();
+
+  // 切歌按钮
+  const trackBtn = document.getElementById('trackBtn');
+  function updateTrackBtn() {
+    trackBtn.textContent = '🎵 ' + Sound.trackName();
+    // 只有一首曲子时禁用（灰掉），避免误以为能切
+    trackBtn.style.opacity = Sound.trackCount() > 1 ? '1' : '0.5';
+  }
+  trackBtn.addEventListener('click', () => {
+    if (Sound.trackCount() <= 1) return;
+    Sound.nextTrack();
+    updateTrackBtn();
+  });
+  updateTrackBtn();
+
+  // 浏览器要求音频必须由用户操作唤醒：首次点击/按键/触摸时解锁音频上下文
+  ['pointerdown', 'keydown', 'touchstart'].forEach(evt =>
+    window.addEventListener(evt, () => Sound.unlock(), { once: true }));
+
+  /* ---------------- 排行榜交互 ---------------- */
+  saveScore.addEventListener('click', doSaveScore);
+
+  function renderModalBoard() {
+    renderBoard({ container: modalBoard, topN: BOARD_MAX, mode: boardTab, countEl: boardCount });
+  }
+  function applyBoardTabUI() {
+    boardTabs.querySelectorAll('.diff-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.tab === boardTab));
+  }
+
+  boardBtn.addEventListener('click', () => {
+    boardTab = (gameMode === 'math') ? 'math' : 'classic';   // 默认显示当前所在模式的榜
+    applyBoardTabUI();
+    renderModalBoard();
+    boardModal.classList.remove('hidden');
+  });
+  boardTabs.addEventListener('click', (e) => {
+    const btn = e.target.closest('.diff-btn');
+    if (!btn) return;
+    boardTab = btn.dataset.tab;
+    applyBoardTabUI();
+    renderModalBoard();
+  });
+  closeBoard.addEventListener('click', () => boardModal.classList.add('hidden'));
+  boardModal.addEventListener('click', (e) => {
+    if (e.target === boardModal) boardModal.classList.add('hidden');   // 点空白处关闭
+  });
+  clearBoard.addEventListener('click', renderModalBoard);   // 全球榜不能清空 → 刷新
+
+  // 初始画面
+  reset();
+  running = false;
+  draw();
+})();
+</script>
+</body>
+</html>
