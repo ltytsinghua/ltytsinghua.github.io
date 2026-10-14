@@ -40,21 +40,30 @@
 
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' and post.hide_meta != true %}
-          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.collection == 'publications' %}
+          {% if post.authors %}<p>{{ post.authors }}{% if post.role %} &nbsp;<i>({% if page.lang == 'zh' %}{% case post.role %}{% when 'First author' %}第一作者{% when 'Co-first author' %}共同第一作者{% else %}{{ post.role }}{% endcase %}{% else %}{{ post.role }}{% endif %})</i>{% endif %}</p>{% endif %}
+          {% if post.hide_meta == true %}
+          <p><i>{% if page.lang == 'zh' %}{% case post.venue %}{% when 'Submitted to Physical Review Letters' %}已投稿至 Physical Review Letters{% when 'In preparation' %}撰写中{% else %}{{ post.venue }}{% endcase %}{% else %}{{ post.venue }}{% endif %}</i></p>
+          {% elsif post.journal_ref %}
+          <p>{{ post.journal_ref }}</p>
+          {% else %}
+          <p>{% if page.lang == 'zh' %}发表于{% else %}Published in{% endif %} <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+          {% endif %}
         {% elsif post.date and post.collection != 'publications' %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
 
-    {% unless post.hide_meta == true %}
-    {% if post.excerpt and site.read_more != 'enabled' %}
+    {% if post.collection == 'publications' and page.lang == 'zh' and post.excerpt_zh %}
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt_zh }}</p>
+    {% elsif post.excerpt and site.read_more != 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
     {% elsif post.excerpt and site.read_more == 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
-    {% endunless %}
 
-    {% if post.hide_meta == true %}
+    {% if post.collection == 'publications' %}
+      {% if post.paperurl %}<p><a href="{{ post.paperurl }}">{% if page.lang == 'zh' %}论文链接{% else %}Paper{% endif %}</a>{% if post.arxivurl %} | <a href="{{ post.arxivurl }}">arXiv</a>{% endif %}</p>{% endif %}
+    {% elsif post.hide_meta == true %}
     {% elsif post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
       <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% elsif post.citation and post.paperurl and post.slidesurl %}

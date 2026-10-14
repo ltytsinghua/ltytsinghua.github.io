@@ -3,9 +3,13 @@ title: "Theory of the charge-6e condensed phase in kagome-lattice superconductor
 collection: publications
 category: manuscripts
 permalink: /publication/2025-02-04-charge-6e-kagome-superconductor
-excerpt: 'A Ginzburg-Landau theory for commensurate pair-density-wave states in kagome superconductors AV3Sb5, establishing a vestigial charge-6e condensed phase via a state-of-the-art tensor-network calculation.'
+excerpt: 'Proposed a phenomenological theory explaining the anomalous <i>h</i>/6<i>e</i> magnetoresistance oscillations observed experimentally in kagome superconductors.'
+journal_ref: '<i>Phys. Rev. B</i> <b>111</b>, 054508 (2025)'
+excerpt_zh: '提出唯象理论，解释了 kagome 超导体实验中观测到的反常 <i>h</i>/6<i>e</i> 振荡现象。'
 date: 2025-02-04
 venue: 'Physical Review B'
+authors: '<b>Tong-Yu Lin</b>, Feng-Feng Song, and Guang-Ming Zhang'
+role: 'First author'
 paperurl: 'https://doi.org/10.1103/PhysRevB.111.054508'
 ---
 

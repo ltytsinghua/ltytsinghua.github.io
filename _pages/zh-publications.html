@@ -25,7 +25,7 @@ lang_alt_label: "EN"
       {% unless title_shown %}
         {% case category[0] %}
           {% when 'manuscripts' %}{% assign cat_title_zh = '期刊论文' %}
-          {% when 'preprints' %}{% assign cat_title_zh = '预印本' %}
+          {% when 'preprints' %}{% assign cat_title_zh = '在投 / 撰写中' %}
           {% when 'conferences' %}{% assign cat_title_zh = '会议论文' %}
           {% when 'books' %}{% assign cat_title_zh = '专著' %}
           {% else %}{% assign cat_title_zh = category[1].title %}
