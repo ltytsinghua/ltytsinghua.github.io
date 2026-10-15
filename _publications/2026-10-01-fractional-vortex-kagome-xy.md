@@ -20,7 +20,7 @@ distinct fractional-vortex-paired phases. We study this question in a generalize
 J<sub>1</sub>&ndash;K frustrated XY model on the kagome lattice. Depending on K/J<sub>1</sub>,
 its ground-state manifold maps onto either the antiferromagnetic three-state Potts model or
 the antiferromagnetic Ising model on the kagome lattice, characterized by
-&lang;e<sup>3i&theta;</sup>&rang; and &lang;e<sup>2i&theta;</sup>&rang; long-range order,
+⟨e<sup>3i&theta;</sup>⟩ and ⟨e<sup>2i&theta;</sup>⟩ long-range order,
 respectively. Both manifolds are extensively degenerate and become exactly degenerate at
 K/J<sub>1</sub> = 1/9, forming a multiphase point. The two sides of this point support,
 respectively, 1/3- and 1/2-vortex excitations, while an additional 1/6-vortex excitation can
