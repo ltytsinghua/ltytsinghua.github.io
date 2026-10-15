@@ -23,6 +23,33 @@ lectures:
     file:     "/files/lectures/junior-math-equations-functions.pdf"
     date:     2024-01-01
 
+  - title:    "Sequences and Inequalities (Math Competition: Advanced Algebra)"
+    title_zh: "数学竞赛讲义：数列与不等式（代数拓展篇）"
+    desc:     "Summation and product notation, sequences and inequalities for secondary-school math competitions."
+    desc_zh:  "求和号与连乘号、数列、不等式，面向中学数学竞赛。"
+    level:    "Math competition"
+    level_zh: "中学数学竞赛"
+    file:     "/files/lectures/math-competition-sequences-inequalities.pdf"
+    date:     2026-08-04
+
+  - title:    "Plane Vectors (Fundamentals + Advanced Extension)"
+    title_zh: "平面向量：基础 + 培优拓展"
+    desc:     "Concepts, operations, the fundamental theorem and coordinates, applications, and an introduction to vector spaces."
+    desc_zh:  "向量的概念与运算、平面向量基本定理及坐标表示、向量的应用，并拓展至向量空间。"
+    level:    "High school / Advanced"
+    level_zh: "高中 / 培优"
+    file:     "/files/lectures/plane-vectors.pdf"
+    date:     2026-08-05
+
+  - title:    "Trigonometric Functions (Junior High Math Competition)"
+    title_zh: "初中数学竞赛课：三角函数"
+    desc:     "Acute-angle trigonometric functions, with a high-school extension to general angles, radians and reduction formulas."
+    desc_zh:  "锐角三角函数及基本关系，并拓展到高中的任意角、弧度制与诱导公式。"
+    level:    "Junior high math competition"
+    level_zh: "初中数学竞赛"
+    file:     "/files/lectures/junior-math-trigonometry.pdf"
+    date:     2026-07-14
+
   # - title:    "Mechanics for Physics Competition"
   #   title_zh: "物理竞赛力学专题"
   #   desc:     "Lecture notes on Newtonian mechanics for high-school competition."
