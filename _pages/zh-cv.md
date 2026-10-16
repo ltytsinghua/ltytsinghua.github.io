@@ -25,7 +25,7 @@ lang_alt_label: "EN"
 
 求职意向
 ======
-AI for Science，Science for AI。
+AI for Math/Physics。
 
 研究概述
 ======
