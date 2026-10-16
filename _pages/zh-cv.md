@@ -25,7 +25,7 @@ lang_alt_label: "EN"
 
 求职意向
 ======
-大模型训练、推理与新型 AI 范式探索。
+AI for Science，Science for AI。
 
 研究概述
 ======
