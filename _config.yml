@@ -256,6 +256,9 @@ collections:
   vibecoding:
     output: true
     permalink: /:collection/:path/
+  physics2ai:
+    output: true
+    permalink: /physics-to-ai/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -321,6 +324,14 @@ defaults:
       layout: single
       author_profile: true
       share: true
+  - scope:
+      path: ""
+      type: physics2ai
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      read_time: true
 
 
 # Sass/SCSS

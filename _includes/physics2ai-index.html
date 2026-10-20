@@ -1,0 +1,47 @@
+{% comment %}
+  Roadmap + entries grouped by section for the "From Physics to AI" column.
+  Text language follows page.lang ("zh" or default English).
+{% endcomment %}
+{% include base_path %}
+{% assign zh = false %}{% if page.lang == 'zh' %}{% assign zh = true %}{% endif %}
+{% assign entries = site.physics2ai | where_exp: "e", "e.draft != true" | sort: "date" | reverse %}
+
+{% if site.data.physics2ai.roadmap.size > 0 %}
+<h2 id="roadmap">{% if zh %}学习路线图{% else %}Roadmap{% endif %}</h2>
+<ul style="list-style:none;padding-left:0;">
+{% for r in site.data.physics2ai.roadmap %}
+  <li style="margin:0.3em 0;">
+    {% case r.status %}
+      {% when 'done' %}<i class="fas fa-fw fa-check-circle" style="color:#2e8b57;" title="done"></i>
+      {% when 'doing' %}<i class="fas fa-fw fa-hourglass-half" style="color:#d08700;" title="in progress"></i>
+      {% else %}<i class="far fa-fw fa-circle" style="color:#999;" title="planned"></i>
+    {% endcase %}
+    {% if zh %}{{ r.stage_zh | default: r.stage }}{% else %}{{ r.stage }}{% endif %}
+  </li>
+{% endfor %}
+</ul>
+<p style="font-size:0.8em;color:#777;">
+  <i class="fas fa-check-circle" style="color:#2e8b57;"></i> {% if zh %}已完成{% else %}done{% endif %} &nbsp;
+  <i class="fas fa-hourglass-half" style="color:#d08700;"></i> {% if zh %}进行中{% else %}in progress{% endif %} &nbsp;
+  <i class="far fa-circle" style="color:#999;"></i> {% if zh %}计划中{% else %}planned{% endif %}
+</p>
+{% endif %}
+
+{% for s in site.data.physics2ai.sections %}
+  {% assign items = entries | where: "section", s.key %}
+  <h2 id="{{ s.key }}"><i class="{{ s.icon }}"></i> {% if zh %}{{ s.name_zh }}{% else %}{{ s.name }}{% endif %}</h2>
+  {% if zh and s.desc_zh %}<p style="color:#666;margin-top:-0.4em;">{{ s.desc_zh }}</p>{% elsif zh == false and s.desc %}<p style="color:#666;margin-top:-0.4em;">{{ s.desc }}</p>{% endif %}
+  {% if items.size == 0 %}
+    <p style="color:#999;"><i>{% if zh %}即将更新{% else %}Coming soon{% endif %}</i></p>
+  {% else %}
+    <ul>
+    {% for e in items %}
+      <li style="margin:0.4em 0;">
+        <span style="color:#888;font-size:0.85em;">{{ e.date | date: "%Y-%m-%d" }}</span> &nbsp;
+        <a href="{{ base_path }}{{ e.url }}">{% if zh %}{{ e.title_zh | default: e.title }}{% else %}{{ e.title }}{% endif %}</a>
+        {% if zh and e.excerpt_zh %}<br><span style="font-size:0.85em;color:#666;">{{ e.excerpt_zh }}</span>{% elsif zh == false and e.excerpt %}<br><span style="font-size:0.85em;color:#666;">{{ e.excerpt | strip_html }}</span>{% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}

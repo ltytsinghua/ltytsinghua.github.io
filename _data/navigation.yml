@@ -23,6 +23,9 @@ main:
   - title: "Vibe Coding"
     url: /vibecoding/
 
+  - title: "From Physics to AI"
+    url: /physics-to-ai/
+
   - title: "Blog"
     url: /blog/
 
@@ -42,6 +45,9 @@ main_zh:
 
   - title: "Vibe Coding"
     url: /zh/vibecoding/
+
+  - title: "From Physics to AI"
+    url: /zh/physics-to-ai/
 
   - title: "博客"
     url: /zh/blog/

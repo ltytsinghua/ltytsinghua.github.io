@@ -1,0 +1,20 @@
+{% comment %}
+  Latest entries of the "From Physics to AI" column, for the homepage.
+  Usage: {% include physics2ai-latest.html limit=3 %}
+{% endcomment %}
+{% include base_path %}
+{% assign zh = false %}{% if page.lang == 'zh' %}{% assign zh = true %}{% endif %}
+{% assign limit = include.limit | default: 3 %}
+{% assign entries = site.physics2ai | where_exp: "e", "e.draft != true" | sort: "date" | reverse %}
+{% if entries.size == 0 %}
+<p style="color:#999;"><i>{% if zh %}即将更新{% else %}Coming soon{% endif %}</i></p>
+{% else %}
+<ul>
+{% for e in entries limit: limit %}
+  <li>
+    <span style="color:#888;font-size:0.85em;">{{ e.date | date: "%Y-%m-%d" }}</span> &nbsp;
+    <a href="{{ base_path }}{{ e.url }}">{% if zh %}{{ e.title_zh | default: e.title }}{% else %}{{ e.title }}{% endif %}</a>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}

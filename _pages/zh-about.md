@@ -16,6 +16,12 @@ lang_alt_label: "EN"
 - **超导**——非常规超导态及其涡旋激发
 - **阻挫磁性**——几何阻挫自旋系统
 
+## From Physics to AI
+
+[进入栏目 →](/zh/physics-to-ai/)
+
+{% include physics2ai-latest.html limit=3 %}
+
 ## 联系方式
 
 邮箱：[lin-ty21@mails.tsinghua.edu.cn](mailto:lin-ty21@mails.tsinghua.edu.cn)。

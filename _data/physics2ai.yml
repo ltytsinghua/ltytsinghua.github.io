@@ -1,0 +1,39 @@
+# Data for the "From Physics to AI" column (/physics-to-ai/, /zh/physics-to-ai/).
+#
+# sections: each entry in _physics2ai/ sets `section:` to one of these keys.
+#           The landing pages list entries grouped in this order.
+#           Optional: desc / desc_zh (one-line description under the heading).
+# roadmap:  learning roadmap shown on the landing pages (hidden while empty).
+#           status: done | doing | todo
+#           Example:
+#             - stage: "Transformer and attention"
+#               stage_zh: "Transformer 与注意力机制"
+#               status: doing
+
+sections:
+  - key: journal
+    name: "Journal"
+    name_zh: "旅程日志"
+    icon: "fas fa-route"
+  - key: notes
+    name: "Notes"
+    name_zh: "知识笔记"
+    icon: "fas fa-book"
+  - key: papers
+    name: "Paper Reading"
+    name_zh: "论文精读"
+    icon: "fas fa-file-alt"
+  - key: projects
+    name: "Projects"
+    name_zh: "项目实践"
+    icon: "fas fa-tools"
+  - key: internship
+    name: "Internship"
+    name_zh: "实习记录"
+    icon: "fas fa-briefcase"
+  - key: physics-x-ai
+    name: "Physics × AI"
+    name_zh: "物理视角"
+    icon: "fas fa-atom"
+
+roadmap: []

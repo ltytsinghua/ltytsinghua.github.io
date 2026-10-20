@@ -20,6 +20,12 @@ unconventional superconductivity, and frustrated magnetism.
 - **Superconductivity** — unconventional superconducting states and its vortex excitations
 - **Frustrated magnetism** — geometrically frustrated spin systems
 
+## From Physics to AI
+
+[Go to the column →](/physics-to-ai/)
+
+{% include physics2ai-latest.html limit=3 %}
+
 ## Contact
 
 Feel free to reach me at
