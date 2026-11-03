@@ -20,7 +20,7 @@ Email: [lin-ty21@mails.tsinghua.edu.cn](mailto:lin-ty21@mails.tsinghua.edu.cn)
 Education
 ======
 * **Ph.D. in Condensed Matter Theory (direct Ph.D.)**, Department of Physics, Tsinghua University, 2021 – 2027 (expected), advised by Prof. Guang-Ming Zhang
-  * Researches tensor-network algorithms and phenomenological theories of unconventional superconductors. Four papers published in international journals, one submitted, and two manuscripts in preparation.
+  * Researches tensor-network algorithms and phenomenological theories of unconventional superconductors. Four papers published in international journals, one submitted, and one manuscript in preparation.
 * **B.S. in Physics (Elite Program)**, Department of Physics, Nanjing University, 2017 – 2021; GPA: 4.40/5.0
   * Completed foundational university-level mathematics and physics courses; junior-year fall exchange in the Department of Physics at the University of California, Berkeley, GPA: 4.0/4.0.
 
@@ -53,6 +53,6 @@ Technical skills
 
 Awards and honors
 ======
-* First-Class Scholarship, Department of Physics, Tsinghua University, 2025
+* First-Class Scholarship, Department of Physics, Tsinghua University, 2025, 2026
 * Outstanding Graduate, Nanjing University, 2021
 * First-Class Scholarship, Department of Physics, Nanjing University, 2019

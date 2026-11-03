@@ -3,9 +3,9 @@ title: "General tensor network theory for frustrated classical spin models in tw
 collection: publications
 category: manuscripts
 permalink: /publication/2023-12-04-tn-frustrated-classical-spin
-excerpt: 'Proposed a new tensor-network representation of the partition function for frustrated spin systems, resolving the non-convergence of previous tensor-network algorithms on these systems.'
+excerpt: 'The ground states of frustrated classical spin models are highly degenerate, so standard tensor-network representations fail to converge at low temperatures. We proposed a general tensor-network theory that encodes the emergent degrees of freedom into local tensors to relieve frustration; the resulting tensor networks converge and yield accurate physical results.'
 journal_ref: '<i>Phys. Rev. B</i> <b>108</b>, 224404 (2023)'
-excerpt_zh: '提出用张量网络表示阻挫自旋系统配分函数的新方法，解决了以往张量网络算法在此类系统上不收敛的问题。'
+excerpt_zh: '经典阻挫自旋模型基态高度简并，标准张量网络表示在低温下难以收敛。本工作提出统一的张量网络理论：将涌现自由度编码进局域张量以缓解阻挫，由此得到的张量网络可以收敛并得到准确的物理结果。'
 date: 2023-12-04
 venue: 'Physical Review B'
 authors: 'Feng-Feng Song<sup>*</sup>, <b>Tong-Yu Lin</b><sup>*</sup>, and Guang-Ming Zhang'

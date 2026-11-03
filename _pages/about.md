@@ -12,13 +12,21 @@ redirect_from:
 
 I am a fifth-year PhD candidate in the Department of Physics at Tsinghua University.
 My research interests include tensor networks, statistical mechanics, vortices in
-unconventional superconductivity, and frustrated magnetism.
+unconventional superconductivity, and frustrated magnetism; looking ahead, I am interested
+in Physics for AI and AI for Science.
 
 ## Research interests
 
-- **Tensor network** — methods and applications for classical and quantum lattice models
-- **Superconductivity** — unconventional superconducting states and its vortex excitations
-- **Frustrated magnetism** — geometrically frustrated spin systems
+**Current**
+
+- **Tensor networks** — developing tensor-network methods for problems in statistical physics
+- **Frustrated magnetism** — exotic magnetic orders and phase transitions in frustrated magnetic systems
+- **Phenomenology of unconventional superconductors** — unconventional vortex excitations, such as fractional vortices
+
+**Future**
+
+- **Physics for AI** — improving the reasoning and physics capabilities of AI, and studying AI interpretability
+- **AI for Science** — using AI to accelerate discovery in physics
 
 ## From Physics to AI
 

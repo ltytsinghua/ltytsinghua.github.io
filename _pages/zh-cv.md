@@ -11,7 +11,7 @@ lang_alt_label: "EN"
 
 {% include base_path %}
 
-<p><a class="btn btn--primary" href="{{ base_path }}/files/cv.pdf" download>下载 CV PDF</a></p>
+<p><a class="btn btn--primary" href="{{ base_path }}/files/cv_zh.pdf" download>下载 CV PDF</a></p>
 
 清华大学物理系，北京 100084<br>
 邮箱：[lin-ty21@mails.tsinghua.edu.cn](mailto:lin-ty21@mails.tsinghua.edu.cn)
@@ -19,7 +19,7 @@ lang_alt_label: "EN"
 教育经历
 ======
 * **清华大学物理系凝聚态理论专业博士（直博）**，2021 – 2027（预计），导师：张广铭教授
-  * 从事张量网络算法与非常规超导体的唯象理论相关研究，已在国际期刊发表四篇文章，另有一篇在投，两篇工作撰写中。
+  * 从事张量网络算法与非常规超导体的唯象理论相关研究，已在国际期刊发表四篇文章，另有一篇在投，一篇工作撰写中。
 * **南京大学物理系拔尖班理学学士**，2017 – 2021，GPA 4.40/5.0
   * 系统学习大学数学与物理基础课程；大三上赴加州大学伯克利分校物理系交换，GPA 4.0/4.0。
 
@@ -56,6 +56,6 @@ AI for Math/Physics。
 
 获奖荣誉
 ======
-* 清华大学物理系一等奖学金，2025
+* 清华大学物理系一等奖学金，2025，2026
 * 南京大学优秀毕业生，2021
 * 南京大学物理系一等奖学金，2019

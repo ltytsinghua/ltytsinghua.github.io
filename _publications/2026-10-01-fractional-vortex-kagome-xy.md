@@ -1,32 +1,31 @@
 ---
-title: "A 1/6-vortex-paired phase emerging from the boundary between 1/2- and 1/3-vortex-paired phases in a frustrated kagome XY model"
+title: "Frustration-induced 1/6-vortex-paired phase in a kagome XY model"
 collection: publications
 category: preprints
 permalink: /publication/2026-10-01-fractional-vortex-kagome-xy
 redirect_from:
   - /publication/2026-07-01-charge-4e-kagome-superconductor
-excerpt: 'Proposed a new theoretical model showing that kagome materials can host multiple fractional-vortex excitations and the corresponding vortex-paired phases, which may correspond to novel multi-electron superconducting states.'
-excerpt_zh: '提出新的理论模型，表明 kagome 材料中可形成多种分数涡旋激发及相应的配对相，这些配对相可对应新奇的多电子超导态。'
-date: 2026-10-01
+excerpt: 'Frustration can fractionalize integer vortices in 2D XY systems, but a given model usually hosts only one type of fractional vortex. Studying a <i>J</i><sub>1</sub>&ndash;<i>K</i> XY model on the kagome lattice, we proposed a mechanism in which competing frustrated manifolds give rise to new fractional-vortex-paired phases, realizing 1/2-, 1/3- and 1/6-vortex-paired phases within a single model.'
+excerpt_zh: '阻挫可使二维 XY 系统的整数涡旋分数化，但通常一个模型只支持一种分数涡旋。本工作研究 kagome 晶格上的 <i>J</i><sub>1</sub>&ndash;<i>K</i> XY 模型，提出一种由相互竞争的阻挫流形构造新型分数涡旋配对相的机制，在同一模型中实现了 1/2、1/3 与 1/6 涡旋配对相。'
+date: 2026-10-30
 venue: 'Submitted to Physical Review Letters'
 authors: '<b>Tong-Yu Lin</b> and Guang-Ming Zhang'
 role: 'First author'
+paperurl: 'https://arxiv.org/abs/2610.41161'
 hide_meta: true
 ---
 
-Frustration can fractionalize the integer vortices of two-dimensional XY systems, yet it
-remains unclear whether a single model can host multiple fractional-vortex excitations and
-distinct fractional-vortex-paired phases. We study this question in a generalized
-J<sub>1</sub>&ndash;K frustrated XY model on the kagome lattice. Depending on K/J<sub>1</sub>,
-its ground-state manifold maps onto either the antiferromagnetic three-state Potts model or
-the antiferromagnetic Ising model on the kagome lattice, characterized by
-⟨e<sup>3i&theta;</sup>⟩ and ⟨e<sup>2i&theta;</sup>⟩ long-range order,
-respectively. Both manifolds are extensively degenerate and become exactly degenerate at
-K/J<sub>1</sub> = 1/9, forming a multiphase point. The two sides of this point support,
-respectively, 1/3- and 1/2-vortex excitations, while an additional 1/6-vortex excitation can
-be constructed at the multiphase point. Tensor-network calculations further reveal a
-finite-temperature vortex-paired phase extending to both sides of the multiphase point,
-characterized by quasi-long-range order in e<sup>6i&theta;</sup>. The unbinding of the 1/6
-vortices drives the transition to the disordered phase. These results identify a novel
-1/6-vortex-paired phase emerging from the boundary between the 1/2- and 1/3-vortex-paired
-phases.
+Geometric frustration can fractionalize vortices in two-dimensional XY systems, but a given
+frustrated model usually hosts only a single type of fractional vortex. Here we study a kagome
+XY model in which an antiferromagnetic coupling J<sub>1</sub> and a second-harmonic coupling K
+favor two competing frustrated ground-state manifolds. For K/J<sub>1</sub> &lt; 1/9, the ground
+states map onto those of the kagome three-state Potts antiferromagnet and support 1/3 vortices;
+for K/J<sub>1</sub> &gt; 1/9, they map onto those of the kagome Ising antiferromagnet and support
+1/2 vortices. At K/J<sub>1</sub> = 1/9, the two manifolds become degenerate, and bends in the
+domain walls between them carry 1/6-vortex excitations. Tensor-network calculations show that a
+finite-temperature phase with quasi-long-range order only in e<sup>6i&theta;</sup> emerges from
+this degenerate point, separating the 1/3- and 1/2-vortex-paired phases. This 1/6-vortex-paired
+phase has no counterpart in either parent manifold, showing that competing frustrated manifolds
+provide a route to new fractional-vortex-paired phases.
+
+arXiv: [2610.41161](https://arxiv.org/abs/2610.41161)

@@ -3,9 +3,9 @@ title: "Equivalence of residual entropy of hexagonal and cubic ices from tensor 
 collection: publications
 category: manuscripts
 permalink: /publication/2026-06-03-residual-entropy-ice-tn
-excerpt: 'Applied the variational tensor-network method to a long-standing open question in statistical physics, numerically demonstrating that hexagonal and cubic ices have equal residual entropy.'
+excerpt: 'Whether hexagonal and cubic ices have equal residual entropy is a long-standing open problem in statistical physics: analytically only <i>S</i><sub>h</sub> &ge; <i>S</i><sub>c</sub> is proven, while numerically the two are extremely close. We encoded the ice rules explicitly into local tensors, turning the residual entropy into the leading eigenvalue of a transfer operator; we proposed a new perspective based on the normality of the transfer operator and showed with tensor computations that the two entropies are numerically equal.'
 journal_ref: '<i>Phys. Rev. B</i> <b>113</b>, 214416 (2026)'
-excerpt_zh: '利用变分张量网络方法研究统计物理中长期悬而未决的冰的剩余熵问题，从数值上证明六方冰与立方冰的剩余熵相等。'
+excerpt_zh: '六方冰与立方冰的剩余熵是否相等是统计物理中长期悬而未决的问题：解析上仅证明了 <i>S</i><sub>h</sub> &ge; <i>S</i><sub>c</sub>，数值上二者极为接近。本工作将“冰规则”显式编码进局域张量，把剩余熵转化为转移算符的最大本征值；提出从转移算符正规性出发的新视角，并利用张量计算说明二者在数值上相等。'
 date: 2026-06-03
 venue: 'Physical Review B'
 authors: 'Xia-Ze Xu<sup>*</sup>, <b>Tong-Yu Lin</b><sup>*</sup>, and Guang-Ming Zhang'
