@@ -3,12 +3,10 @@
 # sections: each entry in _physics2ai/ sets `section:` to one of these keys.
 #           The landing pages list entries grouped in this order.
 #           Optional: desc / desc_zh (one-line description under the heading).
-# roadmap:  learning roadmap shown on the landing pages (hidden while empty).
-#           status: done | doing | todo
-#           Example:
-#             - stage: "Transformer and attention"
-#               stage_zh: "Transformer 与注意力机制"
-#               status: doing
+#
+# Roadmaps are per entry: add `roadmap:` to an entry's front matter
+# (see _templates/physics2ai/README.md). It is shown under that entry
+# on the landing pages.
 
 sections:
   - key: journal
@@ -38,22 +36,3 @@ sections:
     name_zh: "物理视角"
     icon: "fas fa-atom"
 
-roadmap:
-  - stage: "nano-deepseek: data and vocabulary"
-    stage_zh: "nano-deepseek：数据与词表"
-    status: done
-  - stage: "nano-deepseek v0: LLaMA-style baseline (RMSNorm, RoPE, SwiGLU)"
-    stage_zh: "nano-deepseek v0：LLaMA 风格基线（RMSNorm、RoPE、SwiGLU）"
-    status: doing
-  - stage: "nano-deepseek v1 ≈ DeepSeek-V2: MLA, DeepSeekMoE"
-    stage_zh: "nano-deepseek v1 ≈ DeepSeek-V2：MLA、DeepSeekMoE"
-    status: todo
-  - stage: "nano-deepseek v2 ≈ DeepSeek-V3: auxiliary-loss-free load balancing, MTP"
-    stage_zh: "nano-deepseek v2 ≈ DeepSeek-V3：无辅助损失负载均衡、MTP"
-    status: todo
-  - stage: "nano-deepseek v3 ≈ DeepSeek-R1: GRPO, R1-Zero / R1 training, distillation"
-    stage_zh: "nano-deepseek v3 ≈ DeepSeek-R1：GRPO、R1-Zero / R1 多阶段训练、蒸馏"
-    status: todo
-  - stage: "nano-deepseek v4 ≈ DeepSeek-V4: mHC, Muon, on-policy distillation"
-    stage_zh: "nano-deepseek v4 ≈ DeepSeek-V4：mHC、Muon、On-Policy Distillation"
-    status: todo

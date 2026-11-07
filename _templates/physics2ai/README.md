@@ -7,7 +7,14 @@
    - `permalink`: `/physics-to-ai/<slug>/`
    - `draft: true` hides the entry from the lists while you are still writing it.
 3. Math: use `$$...$$` for both inline and display formulas (kramdown → MathJax).
-4. Update roadmap progress in `_data/physics2ai.yml` (`status: done | doing | todo`).
+4. Optional roadmap (e.g. for a project): add to the entry's front matter
+   ```yaml
+   roadmap:
+     - stage: "v0: baseline"
+       stage_zh: "v0：基线"
+       status: doing        # done | doing | todo
+   ```
+   It is shown under the entry on the landing pages.
 
 The landing pages (/physics-to-ai/, /zh/physics-to-ai/) and the homepage
 "latest entries" list update automatically.

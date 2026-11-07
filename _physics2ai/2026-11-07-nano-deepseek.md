@@ -9,6 +9,25 @@ permalink: /physics-to-ai/nano-deepseek/
 date: 2026-11-07
 lang: zh
 locale: zh-CN
+roadmap:
+  - stage: "Data and vocabulary"
+    stage_zh: "数据与词表"
+    status: done
+  - stage: "v0: LLaMA-style baseline (RMSNorm, RoPE, SwiGLU)"
+    stage_zh: "v0：LLaMA 风格基线（RMSNorm、RoPE、SwiGLU）"
+    status: doing
+  - stage: "v1 ≈ DeepSeek-V2: MLA, DeepSeekMoE"
+    stage_zh: "v1 ≈ DeepSeek-V2：MLA、DeepSeekMoE"
+    status: todo
+  - stage: "v2 ≈ DeepSeek-V3: auxiliary-loss-free load balancing, MTP"
+    stage_zh: "v2 ≈ DeepSeek-V3：无辅助损失负载均衡、MTP"
+    status: todo
+  - stage: "v3 ≈ DeepSeek-R1: GRPO, R1-Zero / R1 training, distillation"
+    stage_zh: "v3 ≈ DeepSeek-R1：GRPO、R1-Zero / R1 多阶段训练、蒸馏"
+    status: todo
+  - stage: "v4 ≈ DeepSeek-V4: mHC, Muon, on-policy distillation"
+    stage_zh: "v4 ≈ DeepSeek-V4：mHC、Muon、On-Policy Distillation"
+    status: todo
 tags:
   - minimal-model
   - deepseek
