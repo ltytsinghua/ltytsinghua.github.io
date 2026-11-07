@@ -22,6 +22,7 @@ Education
 * **Ph.D. in Physics (Condensed Matter Theory)**, Department of Physics, Tsinghua University, 2021 – 2026.12 (expected), advised by Prof. Guang-Ming Zhang
 * **B.S. in Physics, Top-notch Undergraduate Program**, Department of Physics, Nanjing University, 2017 – 2021
 * **Exchange Student**, Department of Physics, University of California, Berkeley, 2019.8 – 2019.12
+* **Middle & High School, Gifted Education Program**, Northeast Yucai School, Shenyang, 2012.9 – 2017.6
 
 Objective
 ======
