@@ -23,10 +23,12 @@ sections:
     name: "Paper Reading"
     name_zh: "论文精读"
     icon: "fas fa-file-alt"
-  - key: projects
-    name: "Projects"
-    name_zh: "项目实践"
+  - key: minimal-model
+    name: "Projects: Minimal Model"
+    name_zh: "项目实践：Minimal Model"
     icon: "fas fa-tools"
+    desc: "Reproducing machine learning and LLM projects with limited compute."
+    desc_zh: "在资源和算力有限的条件下，复现机器学习和大模型项目的尝试。"
   - key: internship
     name: "Internship"
     name_zh: "实习记录"
@@ -36,4 +38,22 @@ sections:
     name_zh: "物理视角"
     icon: "fas fa-atom"
 
-roadmap: []
+roadmap:
+  - stage: "nano-deepseek: data and vocabulary"
+    stage_zh: "nano-deepseek：数据与词表"
+    status: done
+  - stage: "nano-deepseek v0: LLaMA-style baseline (RMSNorm, RoPE, SwiGLU)"
+    stage_zh: "nano-deepseek v0：LLaMA 风格基线（RMSNorm、RoPE、SwiGLU）"
+    status: doing
+  - stage: "nano-deepseek v1 ≈ DeepSeek-V2: MLA, DeepSeekMoE"
+    stage_zh: "nano-deepseek v1 ≈ DeepSeek-V2：MLA、DeepSeekMoE"
+    status: todo
+  - stage: "nano-deepseek v2 ≈ DeepSeek-V3: auxiliary-loss-free load balancing, MTP"
+    stage_zh: "nano-deepseek v2 ≈ DeepSeek-V3：无辅助损失负载均衡、MTP"
+    status: todo
+  - stage: "nano-deepseek v3 ≈ DeepSeek-R1: GRPO, R1-Zero / R1 training, distillation"
+    stage_zh: "nano-deepseek v3 ≈ DeepSeek-R1：GRPO、R1-Zero / R1 多阶段训练、蒸馏"
+    status: todo
+  - stage: "nano-deepseek v4 ≈ DeepSeek-V4: mHC, Muon, on-policy distillation"
+    stage_zh: "nano-deepseek v4 ≈ DeepSeek-V4：mHC、Muon、On-Policy Distillation"
+    status: todo

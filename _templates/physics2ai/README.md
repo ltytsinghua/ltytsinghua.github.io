@@ -2,7 +2,7 @@
 
 1. Copy a template from this folder into `_physics2ai/`, named `YYYY-MM-DD-slug.md`.
 2. Fill in the front matter:
-   - `section`: one of `journal`, `notes`, `papers`, `projects`, `internship`, `physics-x-ai`
+   - `section`: one of `journal`, `notes`, `papers`, `minimal-model`, `internship`, `physics-x-ai`
      (defined in `_data/physics2ai.yml`)
    - `permalink`: `/physics-to-ai/<slug>/`
    - `draft: true` hides the entry from the lists while you are still writing it.
