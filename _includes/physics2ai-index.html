@@ -6,15 +6,6 @@
 {% assign zh = false %}{% if page.lang == 'zh' %}{% assign zh = true %}{% endif %}
 {% assign entries = site.physics2ai | where_exp: "e", "e.draft != true" | sort: "date" | reverse %}
 
-  </li>
-{% endfor %}
-</ul>
-<p style="font-size:0.8em;color:#777;">
-  <i class="fas fa-check-circle" style="color:#2e8b57;"></i> {% if zh %}已完成{% else %}done{% endif %} &nbsp;
-  <i class="fas fa-hourglass-half" style="color:#d08700;"></i> {% if zh %}进行中{% else %}in progress{% endif %} &nbsp;
-  <i class="far fa-circle" style="color:#999;"></i> {% if zh %}计划中{% else %}planned{% endif %}
-</p>
-{% endif %}
 
 {% for s in site.data.physics2ai.sections %}
   {% assign items = entries | where: "section", s.key %}
